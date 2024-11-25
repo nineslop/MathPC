@@ -2,21 +2,21 @@
 
 namespace geometry {
 
-    // Квадрат
+    // Square
     double square_area(double lenght) {
         return pow(lenght, 2);
     }
     double square_perimeter(double lenght) {
         return 4 * lenght;
     }
-    // Прямоугольник
+    // Rectangle
     double rectangle_area(double lenghtA, double lenghtB) {
         return lenghtA * lenghtB;  // Площадь прямоугольника
     }
     double rectangle_perimeter(double lenghtA, double lenghtB) {
         return 2 * (lenghtA + lenghtB);  // Периметр прямоугольника
     }
-    // Треугольник
+    // Triangle
     double triangle_area(double base, double height) {
         return 0.5 * base * height;  // Площадь треугольника
     }
@@ -26,7 +26,7 @@ namespace geometry {
     double herons_formula_triangle_area(double semiperimeter, double sideA, double sideB, double sideC) {
         return sqrt(semiperimeter * (semiperimeter - sideA) * (semiperimeter - sideB) * (semiperimeter - sideC));
     }
-    // Круг
+    // Circle
     double circle_area(double radius) {
         return M_PI * radius * radius;  // Площадь круга
     }
@@ -34,60 +34,60 @@ namespace geometry {
     double circle_perimeter(double radius) {
         return 2 * M_PI * radius; // Периметр круга
     }
-    // Ромб
+    // Rhombus
     double rhombus_area(double diagonalOne, double diagonalSecond) {
         return diagonalOne * diagonalSecond / 2;
     }
     double rhombus_perimeter(double lenght) {
         return 4 * lenght;
     }
-    // Параллелограмм
+    // Parallelogram
     double parallelogram_area(double base, double height) {
         return base * height;
     }
     double parallelogram_perimeter(double sideA, double sideB) {
         return 2 * (sideA + sideB);
     }
-    // Трапеция
+    // Trapeze
     double trapeze_area(double baseA, double baseB, double height) {
         return 0.5 * (baseA + baseB) * height;
     }
     double trapeze_perimeter(double sideA, double sideB, double sideC, double sideD) {
         return sideA + sideB + sideC + sideD;
     }
-    // Куб
+    // Cube
     double cube_volume(double lengthEdge) {
         return pow(lengthEdge, 3);
     }
     double cube_area(double lenghtEdge) {
         return 6 * pow(lenghtEdge, 2);
     }
-    // Прямоугольный параллелепипед
+    // Rectangular parallelepiped
     double rectangularParallelepiped_volume(double sideA, double sideB, double sideC) {
         return sideA * sideB * sideC;
     }
     double rectangularParallelepiped_area(double sideA, double sideB, double sideC) {
         return 2 * (sideA * sideB + sideA * sideC + sideB * sideC);
     }
-    // Цилиндр
+    // Cylinder
     double cylinder_volume(double radius, double height) {
         return M_PI * pow(radius, 2) * height;
     }
     double cylinder_area(double radius, double height) {
         return 2 * M_PI * pow(radius, 2) + 2 * M_PI * radius * height;
     }
-    // Конус
+    // Cone
     double cone_volume(double radius, double height) {
         return 1.0 / 3.0 * M_PI * pow(radius, 2) * height;
     }
     double cone_area(double radius, double formingObliqueHeight) {
         return M_PI * radius * (radius + formingObliqueHeight);
     }
-    // Сфера
-    double sphere_volume(double radius) {
+    // Char
+    double char_volume(double radius) {
         return 4.0 / 3.0 * M_PI * pow(radius, 3);
     }
-    double sphere_area(double radius) {
+    double char_area(double radius) {
         return 4 * M_PI * pow(radius, 2);
     }
 }
