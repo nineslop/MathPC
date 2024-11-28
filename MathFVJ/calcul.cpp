@@ -68,3 +68,58 @@ double calculateLog(double value, double base) {
 double calculateModulus(double value) {
     return fabs(value);
 }
+
+double definitionOfFactorial(double num) {
+    if (num < 0 || static_cast<int>(num) != num) {
+        throw std::invalid_argument("Факториал определен только для неотрицательных целых чисел.");
+    }
+
+    if (num == 0) {
+        return 1.0;
+    }
+
+    double value = 1.0;
+    for (int i = 1; i <= static_cast<int>(num); ++i) {
+        value *= i;
+    }
+
+    return value;
+}
+
+
+
+double definitionOfFactorialRecursive(double num) {
+    if (num < 0 || static_cast<int>(num) != num) {
+        throw std::invalid_argument("Факториал определен только для неотрицательных целых чисел.");
+    }
+
+    if (num == 0) {
+        return 1.0;
+    }
+
+    return num * definitionOfFactorialRecursive(num - 1); // Recurrence case: n! = n * (n-1)!
+}
+
+double propertiesOfFactorials(double num) {
+    if (num < 1 || static_cast<int>(num) != num) {
+        throw std::invalid_argument("Факториал определен только для неотрицательных целых чисел.");
+    }
+
+    if (num == 0) {
+        return 1.0;
+    }
+
+    return num;
+}
+
+double numberOfCombinations(double num, double k) {
+    if (num < 0 || k < 0 || k > num || static_cast<int>(num) != num || static_cast<int>(k) != k) {
+        throw std::invalid_argument("Число сочетаний определено только для 0 <= k <= n, где n и k — целые числа.");
+    }
+
+    if (num == 0 && k == 0) {
+        return 1.0;
+    }
+
+    return definitionOfFactorialRecursive(num) / definitionOfFactorialRecursive(k) * definitionOfFactorialRecursive(num - k);
+}

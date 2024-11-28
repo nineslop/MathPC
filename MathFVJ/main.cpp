@@ -5,11 +5,13 @@
 #include "algebra.h"
 #include "calcul.h"
 #include "utils.h"
+#include "numbertable.h"
 
 
 void geometryMenu();
 void algebraMenu();
 void calculator();
+void numberTable();
 void functionGraphs();
 
 void clearScreen() {
@@ -27,7 +29,8 @@ int main() {
         std::cout << "1. Геометрия\n";
         std::cout << "2. Алгебра\n";
         std::cout << "3. Калькулятор\n";
-        std::cout << "4. Графики функций\n";
+        std::cout << "4. Перевод таблицы счисления\n";
+        std::cout << "5. Графики функций\n";
         std::cout << "0. Выход\n";
         std::cout << "Ваш выбор: ";
         std::cin >> mainChoice;
@@ -43,6 +46,9 @@ int main() {
             calculator();
             break;
         case 4:
+            numberTable();
+            break;
+        case 5:
             functionGraphs();
             break;
         case 0:
@@ -333,6 +339,10 @@ void calculator() {
         std::cout << "13. Возведение степени\n";
         std::cout << "14. Логарифм\n";
         std::cout << "15. Модуль\n";
+        std::cout << "16. Определение факториала\n";
+        std::cout << "17. Рекуррентная формула факториала\n";
+        std::cout << "18. Свойства факториалов(Отношение соседних факториалов)\n";
+        std::cout << "19. Число сочетаний C(n,k)\n";
         std::cout << "Ваш выбор: ";
         std::cin >> choice;
 
@@ -481,6 +491,60 @@ void calculator() {
                 utils::output("Модуль: ", result);
                 break;
             }
+            case 16: {
+                double num;
+                utils::input("Введите неотрицательное целое число: ", num);
+                try
+                {
+                    double result = definitionOfFactorial(num);
+                    utils::output("Факториал (n!): ", result);
+                }
+                catch (const std::invalid_argument& e)
+                {
+                    std::cout << "Ошибка: " << e.what() << std::endl;
+                }
+                break;
+            }
+            case 17: {
+                double num;
+                utils::input("Введите неотрицательное целое число: ", num);
+                try
+                {
+                    double result = definitionOfFactorialRecursive(num);
+                    utils::output("Факториал (n!) рекурсивно: ", result);
+                }
+                catch (const std::invalid_argument& e)
+                {
+                    std::cout << "Ошибка: " << e.what() << std::endl;
+                }
+            }
+            case 18: {
+                double num;
+                utils::input("Введите неотрицательное целое число: ", num);
+                try
+                {
+                    double result = propertiesOfFactorials(num);
+                    utils::output("Отношение соседних факториалов: ", result);
+                }
+                catch (const std::invalid_argument& e)
+                {
+                    std::cout << "Ошибка: " << e.what() << std::endl;
+                }
+            }
+            case 19: {
+                double num, k;
+                utils::input("Введите неотрицательное целое число(n): ", num);
+                utils::input("Введите неотрицательное целое число(k): ", k);
+                try
+                {
+                    double result = numberOfCombinations(num, k);
+                    utils::output("C(n,k): ", result);
+                }
+                catch (const std::invalid_argument& e)
+                {
+                    std::cout << "Ошибка: " << e.what() << std::endl;
+                }
+            }
             default:
                 std::cout << "Неверный выбор. Возврат в главное меню.\n";
                 std::cin.ignore();
@@ -491,6 +555,50 @@ void calculator() {
         std::cin.ignore();
         std::cin.get();
     }
+}
+
+void numberTable() {
+    while (true) {
+        clearScreen();
+        int choice;
+
+        std::cout << "Выберите задачу:\n";
+        std::cout << "1. Перевод из любой системы счисления в 10\n";
+        std::cout << "0. Выход\n";
+        std::cout << "Ваш выбор: ";
+        std::cin >> choice;
+
+        if (choice == 0) break;
+
+        clearScreen();
+        switch (choice) {
+        case 1: {
+            std::string number;
+            int base;
+            std::cout << "Введите число: ";
+            std::cin >> number;
+            std::cout << "Введите основание системы счисления (2-16): ";
+            std::cin >> base;
+
+            try {
+                int decimalValue = numbertable::baseToDecimal(number, base);
+                std::cout << "Десятичное значение: " << decimalValue << std::endl;
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Ошибка: " << e.what() << std::endl;
+            }
+            break;
+        }
+        default:
+            std::cout << "Неверный выбор. Возврат в главное меню.\n";
+            std::cin.ignore();
+            std::cin.get();
+        }
+        std::cout << "Нажмите Enter для возврата в меню.\n";
+        std::cin.ignore();
+        std::cin.get();
+    }
+
 }
 
 void functionGraphs() {

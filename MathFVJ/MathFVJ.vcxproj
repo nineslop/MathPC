@@ -131,12 +131,14 @@
     <ClCompile Include="calcul.cpp" />
     <ClCompile Include="geometry.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="numbertable.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algebra.h" />
     <ClInclude Include="calcul.h" />
     <ClInclude Include="geometry.h" />
+    <ClInclude Include="numbertable.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

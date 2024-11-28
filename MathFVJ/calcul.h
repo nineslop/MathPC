@@ -27,4 +27,9 @@ double calculatePow(double base, double exponent);
 double calculateLog(double value, double base);
 double calculateModulus(double value);
 
+double definitionOfFactorial(double num);
+double definitionOfFactorialRecursive(double num);
+double propertiesOfFactorials(double num);
+double numberOfCombinations(double num, double k);
+
 #endif
