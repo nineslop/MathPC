@@ -5,7 +5,7 @@ namespace numbertable {
 
     int baseToDecimal(const std::string& number, int base) {
         if (base < 2 || base > 16) {
-            throw std::invalid_argument("Основание системы счисления должно быть от 2 до 16.");
+            throw std::invalid_argument("The base of the number system must be between 2 and 16.");
         }
 
         int decimalValue = 0;
@@ -19,7 +19,7 @@ namespace numbertable {
             if (digit >= '0' && digit <= '9') {
                 int digitValue = digit - '0';
                 if (digitValue >= base) {
-                    throw std::invalid_argument("Некорректный символ в числе для данной системы счисления.");
+                    throw std::invalid_argument("Incorrect character in a number for this number system.");
                 }
                 decimalValue += digitValue * positionValue;
             }
@@ -27,12 +27,12 @@ namespace numbertable {
             else if (digit >= 'A' && digit <= 'F') {
                 int digitValue = digit - 'A' + 10;
                 if (digitValue >= base) {
-                    throw std::invalid_argument("Некорректный символ в числе для данной системы счисления.");
+                    throw std::invalid_argument("Incorrect character in a number for this number system.");
                 }
                 decimalValue += digitValue * positionValue;
             }
             else {
-                throw std::invalid_argument("Некорректный символ в числе.");
+                throw std::invalid_argument("Incorrect character in a number.");
             }
 
             positionValue *= base; // Multiply by the base for the next position

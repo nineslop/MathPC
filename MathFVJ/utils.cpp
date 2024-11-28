@@ -10,7 +10,7 @@ namespace utils {
             if (std::cin.fail()) {
                 std::cin.clear(); // Clear the error flag
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore unnecessary characters in the stream
-                std::cout << "Ошибка ввода! Пожалуйста, введите значение типа " << typeid(T).name() << ": ";
+                std::cout << "Input error! Please enter a value of type " << typeid(T).name() << ": ";
             }
             else {
                 break;

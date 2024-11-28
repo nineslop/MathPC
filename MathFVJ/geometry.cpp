@@ -11,14 +11,14 @@ namespace geometry {
     }
     // Rectangle
     double rectangle_area(double lenghtA, double lenghtB) {
-        return lenghtA * lenghtB;  // Площадь прямоугольника
+        return lenghtA * lenghtB;
     }
     double rectangle_perimeter(double lenghtA, double lenghtB) {
-        return 2 * (lenghtA + lenghtB);  // Периметр прямоугольника
+        return 2 * (lenghtA + lenghtB);
     }
     // Triangle
     double triangle_area(double base, double height) {
-        return 0.5 * base * height;  // Площадь треугольника
+        return 0.5 * base * height;
     }
     double triangle_perimeter(double sideA, double sideB, double sideC) {
         return sideA + sideB + sideC;
@@ -28,11 +28,11 @@ namespace geometry {
     }
     // Circle
     double circle_area(double radius) {
-        return M_PI * radius * radius;  // Площадь круга
+        return M_PI * radius * radius;
     }
 
     double circle_perimeter(double radius) {
-        return 2 * M_PI * radius; // Периметр круга
+        return 2 * M_PI * radius;
     }
     // Rhombus
     double rhombus_area(double diagonalOne, double diagonalSecond) {
