@@ -4,18 +4,19 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <limits>  // For std::numeric_limits
 
 namespace utils {
 
-    // Функция для ввода данных
+    // Function for data entry
     template <typename T>
     void input(const std::string& prompt, T& value);
 
-    // Функция для вывода данных
+    // Function for data output
     template <typename T>
     void output(const std::string& message, T value);
 
-    // Специализация для строк
+    // Specialisation for strings
     template <>
     void input<std::string>(const std::string& prompt, std::string& value);
 

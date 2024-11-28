@@ -1,7 +1,5 @@
 #include "algebra.h"
 
-#include <stdexcept>
-
 namespace algebra {
 
     double solve_linear_equation(double a, double b) {
@@ -13,7 +11,7 @@ namespace algebra {
                 throw std::invalid_argument("Уравнение не имеет решения.");
             }
         }
-        return -b / a;  // Решение уравнения ax + b = 0
+        return -b / a;  // Solution of the equation ax + b = 0
     }
 
 }
