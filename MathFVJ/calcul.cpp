@@ -86,8 +86,6 @@ double definitionOfFactorial(double num) {
     return value;
 }
 
-
-
 double definitionOfFactorialRecursive(double num) {
     if (num < 0 || static_cast<int>(num) != num) {
         throw std::invalid_argument("The factorial is defined only for non-negative integers.");

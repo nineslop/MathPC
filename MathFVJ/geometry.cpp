@@ -90,4 +90,32 @@ namespace geometry {
     double char_area(double radius) {
         return 4 * M_PI * pow(radius, 2);
     }
+    // Polygon
+    double polygon_area(double numberOfSides, double length) {
+        return numberOfSides * pow(length, 2) / (4 * std::tan(M_PI / numberOfSides));
+    }
+    double polygon_perimetr(double numberOfSides, double length) {
+        return numberOfSides * length;
+    }
+    //Ellipse
+    double ellipse_area(double largeAxleHalf, double minorAxle) {
+        return M_PI * largeAxleHalf * minorAxle;
+    }
+    double ellipse_perimetr(double largeAxleHalf, double minorAxle) {
+        return M_PI * (3 * (largeAxleHalf + minorAxle) - sqrt((3 * largeAxleHalf + minorAxle) * (largeAxleHalf + 3 * minorAxle)));
+    }
+    // Circle sector
+    double circleSector_area(double sectorCenterCorner, double radius) {
+        return (sectorCenterCorner / (2 * M_PI)) * (M_PI * pow(radius, 2));
+    }
+    double circleSector_arcLength(double sectorCenterCorner, double radius) {
+        return radius * sectorCenterCorner;
+    }
+    // Thor
+    double thor_volume(double centerCircleRadius, double torusTubeRadius) {
+        return 2 * pow(M_PI, 2) * centerCircleRadius * pow(torusTubeRadius, 2);
+    }
+    double surfaceAreaOfThe_torus(double centerCircleRadius, double torusTubeRadius) {
+        return 4 * pow(M_PI, 2) * centerCircleRadius * torusTubeRadius;
+    }
 }

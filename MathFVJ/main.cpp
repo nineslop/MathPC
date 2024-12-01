@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <windows.h>
 #include <locale.h>
 #include "geometry.h"
@@ -6,7 +7,6 @@
 #include "calcul.h"
 #include "utils.h"
 #include "numbertable.h"
-
 
 void geometryMenu();
 void algebraMenu();
@@ -87,6 +87,10 @@ void geometryMenu() {
         std::cout << "16. Cone volume\n";
         std::cout << "17. Surface area of the cone\n";
         std::cout << "18. Volume and surface area of a char\n";
+        std::cout << "19. Area and perimeter of a regular polygon\n";
+        std::cout << "20. Ellipse area and perimeter (approximate formula)\n";
+        std::cout << "21. Area and arc length of the circle sector\n";
+        std::cout << "22. Volume and surface area of the torus\n";
         std::cout << "Your choice: ";
         std::cin >> choice;
 
@@ -262,6 +266,50 @@ void geometryMenu() {
                 utils::input("Enter the radius: ", radius);
                 double volume = geometry::char_volume(radius);
                 double area = geometry::char_area(radius);
+                utils::output("Volume: ", volume);
+                utils::output("Surface area: ", area);
+                break;
+            }
+                   // Polygon
+            case 19: {
+                double numberOfSides, length;
+                utils::input("Enter the number of sides: ", numberOfSides);
+                utils::input("Enter the length of the side: ", length);
+                double area = geometry::polygon_area(numberOfSides, length);
+                double perimetr = geometry::polygon_perimetr(numberOfSides, length);
+                utils::output("Area: ", area);
+                utils::output("Perimetr: ", perimetr);
+                break;
+            }
+                   // Ellipse
+            case 20: {
+                double largeAxleHalf, minorAxle;
+                utils::input("Insert the large half axle: ", largeAxleHalf);
+                utils::input("Insert the minor axle: ", minorAxle);
+                double area = geometry::ellipse_area(largeAxleHalf, minorAxle);
+                double perimetr = geometry::ellipse_perimetr(largeAxleHalf, minorAxle);
+                utils::output("Area: ", area);
+                utils::output("Perimetr: ", perimetr);
+                break;
+            }
+                   // Circle sector
+            case 21: {
+                double sectorCenterCorner, radius;
+                utils::input("Sector center angle in radians: ", sectorCenterCorner);
+                utils::input("Radius circle: ", radius);
+                double area = geometry::circleSector_area(sectorCenterCorner, radius);
+                double arcLenght = geometry::circleSector_arcLength(sectorCenterCorner, radius);
+                utils::output("Area: ", area);
+                utils::output("Arc lenght: ", arcLenght);
+                break;
+            }
+                   // Thor
+            case 22: {
+                double centerCircleRadius, torusTubeRadius;
+                utils::input("Center circle radius: ", centerCircleRadius);
+                utils::input("Torus tube radius: ", torusTubeRadius);
+                double volume = geometry::thor_volume(centerCircleRadius, torusTubeRadius);
+                double area = geometry::surfaceAreaOfThe_torus(centerCircleRadius, torusTubeRadius);
                 utils::output("Volume: ", volume);
                 utils::output("Surface area: ", area);
                 break;

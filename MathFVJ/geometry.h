@@ -44,7 +44,18 @@ namespace geometry {
     // Char
     double char_volume(double radius);
     double char_area(double radius);
-
+    // Polygon
+    double polygon_area(double numberOfSides, double length);
+    double polygon_perimetr(double numberOfSides, double length);
+    // Ellipse
+    double ellipse_area(double largeAxleHalf, double minorAxle);
+    double ellipse_perimetr(double largeAxleHalf, double minorAxle);
+    // Circle sector
+    double circleSector_area(double sectorCenterCorner, double radius);
+    double circleSector_arcLength(double sectorCenterCorner, double radius);
+    // Thor
+    double thor_volume(double centerCircleRadius, double torusTubeRadius);
+    double surfaceAreaOfThe_torus(double centerCircleRadius, double torusTubeRadius);
 }
 
 #endif
