@@ -73,40 +73,29 @@ The program includes the following modules:
 
 A file that future development will use to apply the physics constants stored in `physics_constants.h` for accurate scientific calculations. Here are some of the key constants:
 
-- **Speed of light in vacuum**:  
-  `SPEED_OF_LIGHT = 299792458.0 m/s`  
+- **Speed of light in vacuum**:    
   The speed of light in a vacuum is a fundamental constant.
 
 - **Gravitational constant**:  
-  `GRAVITATIONAL_CONSTANT = 6.67430e-11 m³/(kg·s²)`  
   The gravitational constant with a known error margin.
 
 - **Planck's constant**:  
-  `PLANCK_CONSTANT = 6.62607015e-34 J·s`  
   Used to describe quantum mechanics.
 
 - **Elementary charge**:  
-  `ELEMENTARY_CHARGE = 1.602176634e-19 C`  
   The charge of a single proton or electron.
 
 - **Boltzmann constant**:  
-  `BOLTZMANN_CONSTANT = 1.380649e-23 J/K`  
   Used in statistical mechanics.
 
 - **Fine-structure constant**:  
-  `FINE_STRUCTURE_CONSTANT`  
   A dimensionless constant important in quantum electrodynamics.
 
 - **Gravitational acceleration on Earth**:  
-  `GRAVITY_ACCELERATION = 9.80665 m/s²`  
   The standard acceleration due to gravity at Earth's surface.
 
 - **Planck mass, length, time, and temperature**:  
   These constants represent the fundamental units of mass, length, time, and temperature in quantum gravity theory:
-  - `PLANCK_MASS`
-  - `PLANCK_LENGTH`
-  - `PLANCK_TIME`
-  - `PLANCK_TEMPERATURE`
 
 For more constants and details, check the `physics_constants.h` header file.
 
