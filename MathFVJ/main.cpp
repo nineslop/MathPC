@@ -7,11 +7,14 @@
 #include "calcul.h"
 #include "utils.h"
 #include "numbertable.h"
+#include "physics.h"
+#include "physics_constants.h"
 
 void geometryMenu();
 void algebraMenu();
 void calculator();
 void numberTable();
+void physicsMenu();
 void functionGraphs();
 
 void clearScreen() {
@@ -30,7 +33,8 @@ int main() {
         std::cout << "2. Algebra\n";
         std::cout << "3. Calculator\n";
         std::cout << "4. Translation of the number table\n";
-        std::cout << "5. Graphs of functions\n";
+        std::cout << "5. Physics forms\n";
+        std::cout << "6. Graphs of functions\n";
         std::cout << "0. Exit\n";
         std::cout << "Your choice: ";
         std::cin >> mainChoice;
@@ -49,6 +53,9 @@ int main() {
             numberTable();
             break;
         case 5:
+            physicsMenu();
+            break;
+        case 6:
             functionGraphs();
             break;
         case 0:
@@ -68,7 +75,7 @@ void geometryMenu() {
     while (true) {
         clearScreen();
         int choice;
-        std::cout << "Выберите задачу:\n";
+        std::cout << "Select a task:\n";
         std::cout << "1. Area and perimeter of a square\n";
         std::cout << "2. Area and perimeter of a rectangle\n";
         std::cout << "3. The area of a triangle\n";
@@ -565,6 +572,7 @@ void calculator() {
                 {
                     std::cout << "Error: " << e.what() << std::endl;
                 }
+                break;
             }
             case 18: {
                 double num;
@@ -578,6 +586,7 @@ void calculator() {
                 {
                     std::cout << "Error: " << e.what() << std::endl;
                 }
+                break;
             }
             case 19: {
                 double num, k;
@@ -592,6 +601,7 @@ void calculator() {
                 {
                     std::cout << "Error: " << e.what() << std::endl;
                 }
+                break;
             }
             default:
                 std::cout << "Wrong choice. Returns to the main menu.\n";
@@ -642,6 +652,189 @@ void numberTable() {
             std::cin.ignore();
             std::cin.get();
         }
+        std::cout << "Press Enter to return to the menu.\n";
+        std::cin.ignore();
+        std::cin.get();
+    }
+
+}
+
+void physicsMenu() {
+    while (true) {
+        clearScreen();
+        int choice;
+
+        std::cout << "Select a task:\n";
+        std::cout << "1.(MECHANICS s = v * t) Calculating path\n";
+        std::cout << "2.(MECHANICS t = s / v) Calculating time\n";
+        std::cout << "3.(MECHANICS v = s / t) Calculating speed\n";
+        std::cout << "4.(MECHANICS a = del_u / del_t) Calculating acceleration\n";
+        std::cout << "5.(MECHANICS del_u = a / del_t) Calculating velocity change\n";
+        std::cout << "6.(MECHANICS del_t = del_u / a) Calculating velocity change\n";
+        std::cout << "7.(MECHANICS F = m * a) Newton's second law\n";
+        std::cout << "8.(MECHANICS m = F / a) Newton's second law\n";
+        std::cout << "9.(MECHANICS a = F / m) Newton's second law\n";
+        std::cout << "10.(MECHANICS A = F * s * cos(a)) Work\n";
+        std::cout << "11.(MECHANICS F = A / s * cos(a)) Force\n";
+        std::cout << "12.(MECHANICS s = A / F * cos(a)) Distance\n";
+        std::cout << "Your choice: ";
+        std::cin >> choice;
+
+        if (choice == 0) break;
+
+        clearScreen();
+        switch (choice) {
+            //MECHANICS SPEED
+        case 1: {
+            double v, t;
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of v: ", t);
+            double s = physics::calculate_path(v, t);
+            utils::output("Calculated s: ", s);
+            break;
+        }
+        case 2: {
+            double s, v;
+            utils::input("Write the value of s: ", s);
+            utils::input("Write the value of v: ", v);
+            try
+            {
+                double t = physics::calculate_time(s, v);
+                utils::output("Calculated t: ", t);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 3: {
+            double s, t;
+            utils::input("Write the value of s: ", s);
+            utils::input("Write the value of t: ", t);
+            try
+            {
+                double v = physics::calcilate_speed(s, t);
+                utils::output("Calculated v: ", v);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+            //MECHANICS Acceleration 
+        case 4: {
+            double del_u, del_t;
+            utils::input("Write the value of s: ", del_u);
+            utils::input("Write the value of v: ", del_t);
+            try
+            {
+                double a = physics::calculate_acceleration(del_u, del_t);
+                utils::output("Calculated a: ", a);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 5: {
+            double a, del_t;
+            utils::input("Write the value of a: ", a);
+            utils::input("Write the value of del_t: ", del_t);
+            double del_u = physics::calculate_del_u(a, del_t);
+            utils::output("Calculated del_u: ", del_u);
+            break;
+        }
+        case 6: {
+            double del_u, a;
+            utils::input("Write the value of a: ", del_u);
+            utils::input("Write the value of del_t: ", a);
+            double del_t = physics::calculate_del_t(del_u, a);
+            utils::output("Calculated del_u: ", del_t);
+            break;
+        }
+              // Force (Newton's second law)
+        case 7: {
+            double m, a;
+            utils::input("Write the value of m: ", m);
+            utils::input("Write the value of a: ", a);
+            try
+            {
+                double F = physics::calculate_F(m, a);
+                utils::output("Calculated F : ", F);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 8: {
+            double F, a;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of a: ", a);
+            double m = physics::calculate_m(F, a);
+            utils::output("Calculated m: ", m);
+            break;
+        }
+        case 9: {
+            double F, m;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of m: ", m);
+            double a = physics::calculate_a(F, m);
+            utils::output("Calculated a: ", a);
+            break;
+        }
+              // Work
+        case 10: {
+            double F, s, alpha_deg;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of s: ", s);
+            utils::input("Write the value of a (angle in degrees): ", alpha_deg);
+            try
+            {
+                double A = physics::calculate_work(F, s, alpha_deg);
+                utils::output("Calculated A: ", A);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 11: {
+            double A, s, alpha_deg;
+            utils::input("Write the value of A: ", A);
+            utils::input("Write the value of s: ", s);
+            utils::input("Write the value of a (angle in degrees): ", alpha_deg);
+            try
+            {
+                double F = physics::calculate_force(A, s, alpha_deg);
+                utils::output("Calculated F: ", F);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 12: {
+            double A, F, alpha_deg;
+            utils::input("Write the value of A: ", A);
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of a (angle in degrees): ", alpha_deg);
+            try
+            {
+                double s = physics::calculate_distance(A, F, alpha_deg);
+                utils::output("Calculated s: ", s);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        default:
+            std::cout << "Wrong choice. Returns to the main menu.\n";
+            std::cin.ignore();
+            std::cin.get();
+        }
+
         std::cout << "Press Enter to return to the menu.\n";
         std::cin.ignore();
         std::cin.get();

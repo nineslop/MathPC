@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="algebra.cpp" />
     <ClCompile Include="calcul.cpp" />
+    <ClCompile Include="physics.cpp" />
     <ClCompile Include="geometry.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="numbertable.cpp" />
@@ -137,8 +139,10 @@
   <ItemGroup>
     <ClInclude Include="algebra.h" />
     <ClInclude Include="calcul.h" />
+    <ClInclude Include="physics.h" />
     <ClInclude Include="geometry.h" />
     <ClInclude Include="numbertable.h" />
+    <ClInclude Include="physics_constants.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

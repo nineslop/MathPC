@@ -1,6 +1,6 @@
-# Mathematical Utility Program
+# Mathematical Physical Utility Program (MPUP)
 
-This program is a multi-functional mathematical tool written in C++. It provides solutions for various problems in geometry, algebra, basic arithmetic calculations, number system conversions, and function graphing. The tool offers a simple text-based menu to guide the user through different modules and tasks.
+This program is a multifunctional mathematical and physical tool written in C++/C. It provides solutions to various problems in geometry, algebra, basic arithmetic calculations, number system conversions, calculating with physics formulas and using internal physical constants and graphing functions. The program has a simple text menu through which the user can perform various modules and tasks.
 
 ## Features
 
@@ -24,73 +24,92 @@ The program includes the following modules:
 4. **Number System Conversion**:
    - Convert numbers between different number bases (from base 2 to 16) to decimal (base 10).
 
-5. **Function Graphing**:
+5. **Physics**:
+   - **Kinematics**: Calculate velocity, acceleration, displacement, and time using the basic kinematic equations.
+   - **Forces**: Calculate force, mass, and acceleration using Newton's Second Law.
+   - **Energy**: Compute kinetic energy, potential energy, and work done.
+   - **Momentum**: Calculate momentum and impulse.
+   - **Simple Harmonic Motion**: Calculate the period, frequency, and amplitude of simple harmonic oscillators.
+   - **Physics Constants**: The program uses a comprehensive set of physics constants, which are stored in the `physics_constants.h` file. These constants include fundamental quantities like the speed of light, gravitational constant, Planck's constant, elementary charge, Boltzmann constant, and more.
+
+6. **Function Graphing**:
    - (This module has been intended but not yet implemented in the provided code, the implementation will be with the OpenGL library).
 
 ## Geometry Functions
 
 ### 2D Shapes
-- **Square**: 
-  - `square_area(double length)`
-  - `square_perimeter(double length)`
+- Square:
   
-- **Rectangle**: 
-  - `rectangle_area(double lengthA, double lengthB)`
-  - `rectangle_perimeter(double lengthA, double lengthB)`
+- Rectangle: 
   
-- **Triangle**:
-  - `triangle_area(double base, double height)`
-  - `triangle_perimeter(double sideA, double sideB, double sideC)`
-  - `herons_formula_triangle_area(double semiperimeter, double sideA, double sideB, double sideC)`
+- Triangle:
   
-- **Circle**:
-  - `circle_area(double radius)`
-  - `circle_perimeter(double radius)`
+- Circle:
   
-- **Rhombus**: 
-  - `rhombus_area(double diagonalOne, double diagonalSecond)`
-  - `rhombus_perimeter(double length)`
+- Rhombus: 
   
-- **Parallelogram**: 
-  - `parallelogram_area(double base, double height)`
-  - `parallelogram_perimeter(double sideA, double sideB)`
+- Parallelogram: 
   
-- **Trapezoid (Trapeze)**: 
-  - `trapeze_area(double baseA, double baseB, double height)`
-  - `trapeze_perimeter(double sideA, double sideB, double sideC, double sideD)`
+- Trapezoid (Trapeze): 
   
-- **Polygon**:
-  - `polygon_area(double numberOfSides, double length)`
-  - `polygon_perimeter(double numberOfSides, double length)`
+- Polygon:
   
-- **Ellipse**: 
-  - `ellipse_area(double majorAxisHalf, double minorAxis)`
-  - `ellipse_perimeter(double majorAxisHalf, double minorAxis)`
+- Ellipse: 
   
-- **Circle Sector**:
-  - `circleSector_area(double sectorCenterAngle, double radius)`
-  - `circleSector_arcLength(double sectorCenterAngle, double radius)`
+- Circle Sector:
 
 ### 3D Shapes
-- **Cube**:
-  - `cube_volume(double lengthEdge)`
-  - `cube_area(double lengthEdge)`
+- Cube:
   
-- **Rectangular Parallelepiped**: 
-  - `rectangularParallelepiped_volume(double sideA, double sideB, double sideC)`
-  - `rectangularParallelepiped_area(double sideA, double sideB, double sideC)`
+- Rectangular Parallelepiped: 
   
-- **Cylinder**: 
-  - `cylinder_volume(double radius, double height)`
-  - `cylinder_area(double radius, double height)`
+- Cylinder: 
   
-- **Cone**:
-  - `cone_volume(double radius, double height)`
-  - `cone_area(double radius, double formingObliqueHeight)`
+- Cone:
   
-- **Torus**: 
-  - `thor_volume(double centerCircleRadius, double torusTubeRadius)`
-  - `surfaceAreaOfThe_torus(double centerCircleRadius, double torusTubeRadius)`
+- Torus: 
+
+## Physics constants
+
+A file that future development will use to apply the physics constants stored in `physics_constants.h` for accurate scientific calculations. Here are some of the key constants:
+
+- **Speed of light in vacuum**:  
+  `SPEED_OF_LIGHT = 299792458.0 m/s`  
+  The speed of light in a vacuum is a fundamental constant.
+
+- **Gravitational constant**:  
+  `GRAVITATIONAL_CONSTANT = 6.67430e-11 m³/(kg·s²)`  
+  The gravitational constant with a known error margin.
+
+- **Planck's constant**:  
+  `PLANCK_CONSTANT = 6.62607015e-34 J·s`  
+  Used to describe quantum mechanics.
+
+- **Elementary charge**:  
+  `ELEMENTARY_CHARGE = 1.602176634e-19 C`  
+  The charge of a single proton or electron.
+
+- **Boltzmann constant**:  
+  `BOLTZMANN_CONSTANT = 1.380649e-23 J/K`  
+  Used in statistical mechanics.
+
+- **Fine-structure constant**:  
+  `FINE_STRUCTURE_CONSTANT`  
+  A dimensionless constant important in quantum electrodynamics.
+
+- **Gravitational acceleration on Earth**:  
+  `GRAVITY_ACCELERATION = 9.80665 m/s²`  
+  The standard acceleration due to gravity at Earth's surface.
+
+- **Planck mass, length, time, and temperature**:  
+  These constants represent the fundamental units of mass, length, time, and temperature in quantum gravity theory:
+  - `PLANCK_MASS`
+  - `PLANCK_LENGTH`
+  - `PLANCK_TIME`
+  - `PLANCK_TEMPERATURE`
+
+For more constants and details, check the `physics_constants.h` header file.
+
 
 ## Libraries Used
 
@@ -110,6 +129,8 @@ The program uses the following libraries:
   - `calcul.h`: Contains arithmetic operations and other mathematical functions.
   - `utils.h`: Contains utility functions for input, output, and other operations.
   - `numbertable.h`: Functions for converting between number systems (binary, octal, hexadecimal, etc.).
+  - `physics.h`: Contains functions for physics-related calculations.
+  - `physics_constants.h`: Contains constants used in physics calculations.
 
 ## How to Use
 
@@ -131,6 +152,7 @@ The program uses the following libraries:
    - **2. Algebra**: Solve algebraic equations.
    - **3. Calculator**: Perform arithmetic and scientific calculations.
    - **4. Number Table**: Convert numbers between different number systems.
+   - **5. Physics forms**: Access physics-related calculations.
    - **5. Function Graphs**: (Under development in the provided code).
    - **0. Exit**: Exit the program.
 
@@ -181,9 +203,14 @@ If you'd like to contribute to the project, feel free to fork the repository, ma
 This project is open-source and available under the MIT License.
 
 ### Key Updates:
-1. **Geometry Menu**: The updated Geometry Menu includes calculations for more shapes, such as ellipses, circle sectors, and toruses.
-2. **Calculator Menu**: Describes the calculator's functionalities for arithmetic and trigonometric operations.
-3. **Key Changes**: Now highlighted in English, including the addition of new shapes and their formulas for area, perimeter, volume, and surface area calculations.
+1. **Physics Constants**: The program now includes a set of essential physical constants, such as the speed of light, gravitational constant, Planck's constant, and more. These are available in the `physics_constants.h` file for scientific calculations.
+2. **Physics Module**: A new **Physics** module has been added, with the implementation of fundamental mechanics formulas in the files `physics.cpp` and `physics.h`. This includes the following functionalities:
+   - **Speed and Time Calculations**: Functions to calculate path, time, and speed based on known variables.
+   - **Acceleration and Velocity Change**: Functions to calculate acceleration, velocity change, and time change.
+   - **Newton's Second Law (Force)**: Functions for calculating force, mass, and acceleration using Newton’s second law (F = ma).
+   - **Work and Force Calculations**: Functions to calculate work, force, and distance based on the work-energy principle, incorporating angles for work done (A = F * s * cos(α)).
+   
+   The new **Physics** functions can be used to solve various mechanics-related problems, such as finding the time it takes to travel a distance, the force needed for acceleration, and the work done by a force over a given distance with an angle.
 
 ```
 
