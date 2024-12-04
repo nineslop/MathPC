@@ -231,7 +231,7 @@ This project is open-source and available under the MIT License.
          
          - Key Formula:
           
-            $v=v_0​+a*t$
+            $v=v_0​ + a*t$
 
             $s = v_0 * t + \frac12 * a * t^2$
 
