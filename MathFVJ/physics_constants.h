@@ -2,10 +2,25 @@
 
 #ifndef PHYSICS_CONSTANTS_H
 #define PHYSICS_CONSTANTS_H
+#define _USE_MATH_DEFINES
 
 #include <cmath>
 
 namespace Physics_constants {
+
+    constexpr double FREE_FALL_ACCELERATION_g_earth = 9.81;
+    constexpr double FREE_FALL_ACCELERATION_g_moon = 1.62;
+    constexpr double FREE_FALL_ACCELERATION_g_venus = 8.88;
+    constexpr double FREE_FALL_ACCELERATION_g_jupiter = 24.79;
+    constexpr double FREE_FALL_ACCELERATION_g_uranus = 8.86;
+    constexpr double FREE_FALL_ACCELERATION_g_sun = 273.1;
+    constexpr double FREE_FALL_ACCELERATION_g_mercury = 3.70;
+    constexpr double FREE_FALL_ACCELERATION_g_mars = 3.86;
+    constexpr double FREE_FALL_ACCELERATION_g_saturn = 10.44;
+    constexpr double FREE_FALL_ACCELERATION_g_neptune = 11.09;
+    constexpr double FREE_FALL_ACCELERATION_g_pluto = 0.617;
+
+
     // Speed of light in vacuum (exactly), m/s
     constexpr double SPEED_OF_LIGHT = 299792458.0;
 

@@ -640,10 +640,18 @@ void numberTable() {
 
             try {
                 int decimalValue = numbertable::baseToDecimal(number, base);
+
+                if (std::isnan(decimalValue) || std::isinf(decimalValue)) {
+                    throw std::runtime_error("Calculated acceleration is not a valid number.");
+                }
+
                 std::cout << "Decimal value: " << decimalValue << std::endl;
             }
             catch (const std::invalid_argument& e) {
                 std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
             }
             break;
         }
@@ -665,18 +673,20 @@ void physicsMenu() {
         int choice;
 
         std::cout << "Select a task:\n";
-        std::cout << "1.(MECHANICS s = v * t) Calculating path\n";
-        std::cout << "2.(MECHANICS t = s / v) Calculating time\n";
-        std::cout << "3.(MECHANICS v = s / t) Calculating speed\n";
-        std::cout << "4.(MECHANICS a = del_u / del_t) Calculating acceleration\n";
-        std::cout << "5.(MECHANICS del_u = a / del_t) Calculating velocity change\n";
-        std::cout << "6.(MECHANICS del_t = del_u / a) Calculating velocity change\n";
-        std::cout << "7.(MECHANICS F = m * a) Newton's second law\n";
-        std::cout << "8.(MECHANICS m = F / a) Newton's second law\n";
-        std::cout << "9.(MECHANICS a = F / m) Newton's second law\n";
-        std::cout << "10.(MECHANICS A = F * s * cos(a)) Work\n";
-        std::cout << "11.(MECHANICS F = A / s * cos(a)) Force\n";
-        std::cout << "12.(MECHANICS s = A / F * cos(a)) Distance\n";
+        std::cout << "1.Finding the path travelled by the body at a=0 (s = v * t)\n";
+        std::cout << "2.Finding the time travelled by the body at a=0 (t = s / v)\n";
+        std::cout << "3.Finding the speed travelled by the body at a=0 (v = s / t)\n";
+        std::cout << "4.Finding the final velocity of the body, at v0=0 (v = a * t)\n";
+        std::cout << "5.The formula for the path of equidirectional motion(S = v0 * t + (a * t^2 / 2))\n";
+        std::cout << "6.The formula for the v0 of equidirectional motion(v0 = (S - a * t^2 / 2) / t)\n";
+        std::cout << "7.The formula for the acceleration (a) of equidirectional motion(a = (2 * (S - v0 * t)) / t^2\n";
+        std::cout << "8.Equation of the relationship between velocity (v = sqrt(v0^2 - 2 * a * S)\n";
+        std::cout << "9.Equation of the relationship between initial speed (v_zero = sqrt(v^2 - 2 * a * S)\n";
+        std::cout << "10.Equation of the relationship between acceleration (a = (v^2 - v0^2) / (2 * S))\n";
+        std::cout << "11.Equation of the relationship between path (S = (v^2 - v0^2) / (2 * a))\n";
+        std::cout << "12.Dynamics Newton's Second Law (F = m * a)\n";
+        std::cout << "13.Dynamics Newton's Second Law (m = F / a)\n";
+        std::cout << "14.Dynamics Newton's Second Law (a = F / m)\n";
         std::cout << "Your choice: ";
         std::cin >> choice;
 
@@ -684,12 +694,12 @@ void physicsMenu() {
 
         clearScreen();
         switch (choice) {
-            //MECHANICS SPEED
+            //Kinematics Formulas of equal-velocity motion
         case 1: {
             double v, t;
             utils::input("Write the value of v: ", v);
             utils::input("Write the value of v: ", t);
-            double s = physics::calculate_path(v, t);
+            double s = physics::findingTheTravelled_calculate_path(v, t);
             utils::output("Calculated s: ", s);
             break;
         }
@@ -699,11 +709,19 @@ void physicsMenu() {
             utils::input("Write the value of v: ", v);
             try
             {
-                double t = physics::calculate_time(s, v);
+                double t = physics::findingTheTravelled_calculate_time(s, v);
+
+                if (std::isnan(t) || std::isinf(t)) {
+                    throw std::runtime_error("Calculated acceleration is not a valid number.");
+                }
+
                 utils::output("Calculated t: ", t);
             }
             catch (const std::invalid_argument& e) {
                 std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
             }
             break;
         }
@@ -713,119 +731,268 @@ void physicsMenu() {
             utils::input("Write the value of t: ", t);
             try
             {
-                double v = physics::calcilate_speed(s, t);
+                double v = physics::findingTheTravelled_calculate_speed(s, t);
+
+                if (std::isnan(v) || std::isinf(v)) {
+                    throw std::runtime_error("Calculated acceleration is not a valid number.");
+                }
+
                 utils::output("Calculated v: ", v);
             }
             catch (const std::invalid_argument& e) {
                 std::cout << "Error: " << e.what() << std::endl;
             }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
             break;
         }
-            //MECHANICS Acceleration 
+              // The formula for the path in equidirectional motion
         case 4: {
-            double del_u, del_t;
-            utils::input("Write the value of s: ", del_u);
-            utils::input("Write the value of v: ", del_t);
+            double a, t;
+            utils::input("Write the value of a: ", a);
+            utils::input("Write the value of t: ", t);
+            double v = physics::terminal_velocity(a, t);
+            utils::output("Calculated v: ", v);
+            break;
+        }
+        case 5: {
+            double v_zero, t, a;
+            utils::input("Write the value of v0: ", v_zero);
+            utils::input("Write the value of t: ", t);
+            utils::input("Write the value of a: ", a);
             try
             {
-                double a = physics::calculate_acceleration(del_u, del_t);
+                double S = physics::pathOfEquidirectionalMotion(v_zero, t, a);
+
+                if (std::isnan(S) || std::isinf(S)) {
+                    throw std::runtime_error("Calculated acceleration is not a valid number.");
+                }
+
+                utils::output("Calculated S: ", S);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 6: {
+            double S, a, t;
+            utils::input("Write the value of S: ", S);
+            utils::input("Write the value of a: ", a);
+            utils::input("Write the value of t: ", t);
+            try
+            {
+                double v_zero = physics::v_zeroOfEquidirectionalMotion(S, a, t);
+
+                if (std::isnan(v_zero) || std::isinf(v_zero)) {
+                    throw std::runtime_error("Calculated acceleration is not a valid number.");
+                }
+
+                utils::output("Calculated v0: ", v_zero);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 7: {
+            double S, v_zero, t;
+            utils::input("Write the value of S: ", S);
+            utils::input("Write the value of v0: ", v_zero);
+            utils::input("Write the value of t: ", t);
+            try
+            {
+                double a = physics::accelerationOfEquidirectionalMotion(S, v_zero, t);
+
+                if (std::isnan(a) || std::isinf(a)) {
+                    throw std::runtime_error("Calculated acceleration is not a valid number.");
+                }
+
                 utils::output("Calculated a: ", a);
             }
             catch (const std::invalid_argument& e) {
                 std::cout << "Error: " << e.what() << std::endl;
             }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
             break;
         }
-        case 5: {
-            double a, del_t;
+              // Equation of the relationship between velocity, acceleration and path
+        case 8: {
+            double v_zero, a, S;
+            utils::input("Write the value of v0: ", v_zero);
             utils::input("Write the value of a: ", a);
-            utils::input("Write the value of del_t: ", del_t);
-            double del_u = physics::calculate_del_u(a, del_t);
-            utils::output("Calculated del_u: ", del_u);
+            utils::input("Write the value of S: ", S);
+            try
+            {
+                double v = physics::equationOfTheRelationshipBetweenVelocity(v_zero, a, S);
+
+                if (std::isnan(v) || std::isinf(v)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                if (v <= 0) {
+                    throw std::runtime_error("The speed (v) cannot be 0 according to this formula");
+                }
+
+                utils::output("Calculated v: ", v);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
             break;
         }
-        case 6: {
-            double del_u, a;
-            utils::input("Write the value of a: ", del_u);
-            utils::input("Write the value of del_t: ", a);
-            double del_t = physics::calculate_del_t(del_u, a);
-            utils::output("Calculated del_u: ", del_t);
+        case 9: {
+            double v, a, S;
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of a: ", a);
+            utils::input("Write the value of S: ", S);
+            try
+            {
+                double v_zero = physics::equationOfTheRelationshipBetweenV_zero(v, a, S);
+
+                if (std::isnan(v_zero) || std::isinf(v_zero)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                if (v_zero <= 0) {
+                    throw std::runtime_error("The speed (v0) cannot be 0 according to this formula");
+                }
+
+                utils::output("Calculated v0: ", v_zero);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
             break;
         }
-              // Force (Newton's second law)
-        case 7: {
+        case 10: {
+            double v, v_zero, S;
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of v0: ", v_zero);
+            utils::input("Write the value of S: ", S);
+            try
+            {
+                double a = physics::equationOfTheRelationshipBetweenAcceleration(v, v_zero, S);
+
+                if (std::isnan(a) || std::isinf(a)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated a: ", a);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 11: {
+            double v, v_zero, a;
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of v0: ", v_zero);
+            utils::input("Write the value of a: ", a);
+            try
+            {
+                double S = physics::equationOfTheRelationshipBetweenPath(v, v_zero, a);
+
+                if (std::isnan(S) || std::isinf(S)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated S: ", S);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+               //Dynamics Newton's Second Law
+        case 12: {
             double m, a;
             utils::input("Write the value of m: ", m);
             utils::input("Write the value of a: ", a);
             try
             {
-                double F = physics::calculate_F(m, a);
-                utils::output("Calculated F : ", F);
+                double F = physics::dynamicsNewtonsSecondLaw(m, a);
+
+                if (std::isnan(F) || std::isinf(F)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated F: ", F);
+
             }
             catch (const std::invalid_argument& e) {
                 std::cout << "Error: " << e.what() << std::endl;
             }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
             break;
         }
-        case 8: {
+        case 13: {
             double F, a;
             utils::input("Write the value of F: ", F);
             utils::input("Write the value of a: ", a);
-            double m = physics::calculate_m(F, a);
-            utils::output("Calculated m: ", m);
+            try
+            {
+                double m = physics::dynamicsNewtonsSecondLawMass(F, a);
+
+                if (std::isnan(m) || std::isinf(m)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated m: ", m);
+
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
             break;
         }
-        case 9: {
+        case 14: {
             double F, m;
             utils::input("Write the value of F: ", F);
             utils::input("Write the value of m: ", m);
-            double a = physics::calculate_a(F, m);
-            utils::output("Calculated a: ", a);
-            break;
-        }
-              // Work
-        case 10: {
-            double F, s, alpha_deg;
-            utils::input("Write the value of F: ", F);
-            utils::input("Write the value of s: ", s);
-            utils::input("Write the value of a (angle in degrees): ", alpha_deg);
             try
             {
-                double A = physics::calculate_work(F, s, alpha_deg);
-                utils::output("Calculated A: ", A);
+                double a = physics::dynamicsNewtonsSecondLawMass(F, m);
+
+                if (std::isnan(a) || std::isinf(a)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated m: ", a);
+
             }
             catch (const std::invalid_argument& e) {
                 std::cout << "Error: " << e.what() << std::endl;
             }
-            break;
-        }
-        case 11: {
-            double A, s, alpha_deg;
-            utils::input("Write the value of A: ", A);
-            utils::input("Write the value of s: ", s);
-            utils::input("Write the value of a (angle in degrees): ", alpha_deg);
-            try
-            {
-                double F = physics::calculate_force(A, s, alpha_deg);
-                utils::output("Calculated F: ", F);
-            }
-            catch (const std::invalid_argument& e) {
-                std::cout << "Error: " << e.what() << std::endl;
-            }
-            break;
-        }
-        case 12: {
-            double A, F, alpha_deg;
-            utils::input("Write the value of A: ", A);
-            utils::input("Write the value of F: ", F);
-            utils::input("Write the value of a (angle in degrees): ", alpha_deg);
-            try
-            {
-                double s = physics::calculate_distance(A, F, alpha_deg);
-                utils::output("Calculated s: ", s);
-            }
-            catch (const std::invalid_argument& e) {
-                std::cout << "Error: " << e.what() << std::endl;
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
             }
             break;
         }

@@ -1,80 +1,106 @@
 #include "physics.h"
+#include "physics_constants.h"
 
 
 namespace physics {
 
-	//MECHANICS SPEED
-	double calculate_path(double v, double t) {
+	//Kinematics Formulas of equal-velocity motion
+	double findingTheTravelled_calculate_path(double v, double t) {
 		return v * t; // s = v * t
 	}
 
-	double calculate_time(double s, double v) {
+	double findingTheTravelled_calculate_time(double s, double v) {
 		if (v == 0 || s <= 0) {
 			throw std::invalid_argument("The speed (v) must not be 0 and the path (s) must not be negative.");
 		}
 		return s / v; // t = s / v
 	}
 
-	double calcilate_speed(double s, double t) {
+	double findingTheTravelled_calculate_speed(double s, double t) {
 		if (t == 0) {
 			throw std::invalid_argument("Time (t) cannot be zero.");
 		}
 		return s / t; // v = s / t
 	}
 
-	//MECHANICS acceleration, velocity change, time change
-	double calculate_acceleration(double del_u, double del_t) {
-		if (del_t == 0) {
-			throw std::invalid_argument("Time change (t) cannot be zero.");
+
+	// The formula for the path in equidirectional motion
+	double terminal_velocity(double a, double t) {
+		return a * t; // v = a * t
+	}
+
+	double pathOfEquidirectionalMotion(double v_zero, double t, double a) {
+		if (t <= 0 && (v_zero != 0 || a != 0)) {
+			throw std::invalid_argument("The time must be greater than zero and at least one of the parameters must be non-zero (v0 = 0 or a = 0).");
 		}
-		return del_u / del_t; // a = u / t
+		return (v_zero * t) + ((a * pow(t, 2)) / 2);
 	}
 
-	double calculate_del_u(double a, double del_t) {
-		return a * del_t; // del_u = a * del_t
-	}
-
-	double calculate_del_t(double del_u, double a) {
-		return del_u / a; // del_t = del_u / a
-	}
-
-	// Force (Newton's second law)
-	double calculate_F(double m, double a) {
-		if (m == 0) {
-			throw std::invalid_argument("Mass (m) cannot be zero");
+	double v_zeroOfEquidirectionalMotion(double S, double a, double t) {
+		if (t <= 0) {
+			throw std::invalid_argument("The time must be greater than zero.");
 		}
-		return m * a; // F = m * a
+		return (S - ((a * pow(t, 2)) / 2)) / t;
 	}
 
-	double calculate_m(double F, double a) {
-		return F / a; // m = F / a
-	}
-
-	double calculate_a(double F, double m) {
-		return F / m; // a = F / m
-	}
-
-	double calculate_work(double F, double s, double alpha_deg) {
-		if (F == 0 || s == 0) {
-			throw std::invalid_argument("Force (F) and distance (s) cannot be zero if work is non-zero.");
+	double accelerationOfEquidirectionalMotion(double S, double v_zero, double t) {
+		if (t <= 0) {
+			throw std::invalid_argument("The time must be greater than zero.");
 		}
-		double alpha_rad = alpha_deg * M_PI / 180.0;  // Convert the angle to radians
-		return F * s * cos(alpha_rad);  // A = F * s * cos(a)
+		return (2 * (S - v_zero * t)) / pow(t, 2);
 	}
 
-	double calculate_force(double A, double s, double alpha_deg) {
-		if (s == 0 || A == 0) {
-			throw std::invalid_argument("Distance (s) and work (A) cannot be zero when calculating force.");
+	// Equation of the relationship between velocity, acceleration and path
+	double equationOfTheRelationshipBetweenVelocity(double v_zero, double a, double S) {
+		if (S <= 0 || a == 0) {
+			throw std::invalid_argument("The path must be greater than 0 and the acceleration must not equal 0.");
 		}
-		double alpha_rad = alpha_deg * M_PI / 180.0;  // Convert the angle to radians
-		return A / (s * cos(alpha_rad));  // F = A / (s * cos(a))
+		return sqrt(pow(v_zero, 2) + 2 * a * S);
 	}
 
-	double calculate_distance(double A, double F, double alpha_deg) {
-		if (F == 0 || A == 0) {
-			throw std::invalid_argument("Force (F) and work (A) cannot be zero when calculating distance.");
+	double equationOfTheRelationshipBetweenV_zero(double v, double a, double S) {
+		if (S <= 0 || a == 0) {
+			throw std::invalid_argument("The path must be greater than 0 and the acceleration must not equal 0.");
 		}
-		double alpha_rad = alpha_deg * M_PI / 180.0;  // Convert the angle to radians
-		return A / (F * cos(alpha_rad));  // s = A / (F * cos(a))
+		return sqrt(pow(v, 2) + 2 * a * S);
 	}
+
+	double equationOfTheRelationshipBetweenAcceleration(double v, double v_zero, double S) {
+		if (S <= 0) {
+			throw std::invalid_argument("The path must be greater than 0.");
+		}
+		return (pow(v, 2) - pow(v_zero, 2)) / (2 * S);
+	}
+
+	double equationOfTheRelationshipBetweenPath(double v, double v_zero, double a) {
+		if (a == 0) {
+			throw std::invalid_argument("The acceleration must not equal 0.");
+		}
+		return (pow(v, 2) - pow(v_zero, 2)) / (2 * a);
+	}
+
+	// Dynamics Newton's Second Law
+	double dynamicsNewtonsSecondLaw(double m, double a) {
+		if (m <= 0) {
+			throw std::invalid_argument("Mass cannot be zero.");
+		}
+		return m * a;
+	}
+
+	double dynamicsNewtonsSecondLawMass(double F, double a) {
+		if (a == 0) {
+			throw std::invalid_argument("Mass cannot be zero.");
+		}
+		return F / a;
+	}
+
+	double dynamicsNewtonsSecondLawStrong(double F, double m) {
+		if (m <= 0) {
+			throw std::invalid_argument("Mass cannot be zero.");
+		}
+		return F / m;
+	}
+
+	// Gravity
+	// Friction force
 }

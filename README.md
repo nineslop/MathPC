@@ -14,7 +14,7 @@ The program includes the following modules:
    - Includes specialized shapes like ellipses, circle sectors, and toruses.
 
 2. **Algebra**:
-   - Solve linear equations of the form `ax + b = 0`.
+   - Solve linear equations of the form $ax + b = 0$.
 
 3. **Calculator**:
    - Perform basic arithmetic operations (addition, subtraction, multiplication, division).
@@ -25,12 +25,18 @@ The program includes the following modules:
    - Convert numbers between different number bases (from base 2 to 16) to decimal (base 10).
 
 5. **Physics**:
-   - **Kinematics**: Calculate velocity, acceleration, displacement, and time using the basic kinematic equations.
-   - **Forces**: Calculate force, mass, and acceleration using Newton's Second Law.
-   - **Energy**: Compute kinetic energy, potential energy, and work done.
-   - **Momentum**: Calculate momentum and impulse.
-   - **Simple Harmonic Motion**: Calculate the period, frequency, and amplitude of simple harmonic oscillators.
-   - **Physics Constants**: The program uses a comprehensive set of physics constants, which are stored in the `physics_constants.h` file. These constants include fundamental quantities like the speed of light, gravitational constant, Planck's constant, elementary charge, Boltzmann constant, and more.
+   - **Kinematics**
+      - Calculate displacement, time, and speed for uniform motion.
+      - Compute velocity, displacement, initial velocity, and acceleration for uniformly accelerated motion.
+      - Solve equations relating velocity, acceleration, and displacement.
+   - **Dynamics**
+      - Apply Newton's Second Law to calculate force, mass, and acceleration.
+      - Support calculations for mass and acceleration based on given forces.
+   - **Motion and Velocity Relationships**
+      - Derive relationships between velocity, initial velocity, acceleration, and displacement.
+      - Compute values using advanced motion equations, including terminal velocity.
+   - **Scalable Physics Constants**
+      - Incorporates predefined constants for accurate physical computations.
 
 6. **Function Graphing**:
    - (This module has been intended but not yet implemented in the provided code, the implementation will be with the OpenGL library).
@@ -71,33 +77,49 @@ The program includes the following modules:
 
 ## Physics constants
 
-A file that future development will use to apply the physics constants stored in `physics_constants.h` for accurate scientific calculations. Here are some of the key constants:
+The program leverages a comprehensive set of predefined constants stored in physics_constants.h to ensure accurate and scientifically robust calculations. These include:
 
-- **Speed of light in vacuum**:    
-  The speed of light in a vacuum is a fundamental constant.
+#### Fundamental Constants
 
-- **Gravitational constant**:  
-  The gravitational constant with a known error margin.
+   - Speed of Light $(c)$: $299,792,458 m/s$, the exact speed of light in a vacuum.
+   - Gravitational Constant $(G)$: $6.67430×10^{−11} m^3/kg⋅s^2$, used in gravitational calculations.
+   - Planck's Constant $(h)$: $6.62607015×10^{−34} J⋅s$, foundational for quantum mechanics.
+   - Reduced Planck's Constant $(ℏ)$: $ℏ=h/(2π)$.
 
-- **Planck's constant**:  
-  Used to describe quantum mechanics.
+#### Atomic and Particle Physics Constants
 
-- **Elementary charge**:  
-  The charge of a single proton or electron.
+   - Elementary Charge $(e)$: $1.602176634×10^{−19} C$, the charge of an electron or proton.
+   - Electron Mass: $9.1093837139×10^{−31} kg$.
+   - Proton Mass: $1.67262192595×10^{−27} kg$.
+   - Neutron Mass: $1.67492750056×10^{−27} kg$.
 
-- **Boltzmann constant**:  
-  Used in statistical mechanics.
+#### Thermodynamics and Statistical Mechanics
 
-- **Fine-structure constant**:  
-  A dimensionless constant important in quantum electrodynamics.
+   - Boltzmann Constant $(k)$: $1.380649×10^{−23} J/K$, essential for statistical mechanics.
+   - Universal Gas Constant $(R)$: $8.314462618 J/K⋅mol$.
+   - Molar Volume: $22.41396954 cm^3/mol$ at standard conditions.
 
-- **Gravitational acceleration on Earth**:  
-  The standard acceleration due to gravity at Earth's surface.
+#### Electromagnetic Constants
 
-- **Planck mass, length, time, and temperature**:  
-  These constants represent the fundamental units of mass, length, time, and temperature in quantum gravity theory:
+   - Electric Constant $(ϵ_0​)$: $8.854187818×10^{−12} F/m$.
+   - Magnetic Constant $(μ_0​)$: $4π×10^{−7} H/m$.
+   - Vacuum Impedance: $376.73 Ω$.
 
-For more constants and details, check the `physics_constants.h` header file.
+#### Planetary Free-Fall Accelerations
+
+   - Earth: $9.81 m/s^2$.
+   - Moon: $1.62 m/s^2$.
+   - Jupiter: $24.79 m/s^2$.
+   Additional constants for Venus, Mars, Saturn, and other celestial bodies are included.
+
+#### Planck Units (Quantum Gravity Theory)
+
+   - Planck Mass: Derived from fundamental constants, representing the quantum of mass.
+   - Planck Length: The smallest meaningful length in quantum physics.
+   - Planck Time: The smallest meaningful unit of time.
+   - Planck Temperature: Maximum temperature in quantum theory.
+
+These constants are carefully validated and structured for use in a variety of physical, astrophysical, and quantum mechanics calculations. For a complete list, refer to the physics_constants.h file.
 
 
 ## Libraries Used
@@ -192,14 +214,60 @@ If you'd like to contribute to the project, feel free to fork the repository, ma
 This project is open-source and available under the MIT License.
 
 ### Key Updates:
-1. **Physics Constants**: The program now includes a set of essential physical constants, such as the speed of light, gravitational constant, Planck's constant, and more. These are available in the `physics_constants.h` file for scientific calculations.
-2. **Physics Module**: A new **Physics** module has been added, with the implementation of fundamental mechanics formulas in the files `physics.cpp` and `physics.h`. This includes the following functionalities:
-   - **Speed and Time Calculations**: Functions to calculate path, time, and speed based on known variables.
-   - **Acceleration and Velocity Change**: Functions to calculate acceleration, velocity change, and time change.
-   - **Newton's Second Law (Force)**: Functions for calculating force, mass, and acceleration using Newton’s second law (F = ma).
-   - **Work and Force Calculations**: Functions to calculate work, force, and distance based on the work-energy principle, incorporating angles for work done (A = F * s * cos(α)).
+1. **Physics Constants**: The program now includes important physical constants, such as the speed of light, gravitational constant, and Planck's constant, which are stored in the physics_constants.h file. These constants are useful for scientific and advanced calculations involving fundamental physical properties.
+
+2. **Physics Module**: Physics has been rewritten, the formulas changed and made more understandable
    
-   The new **Physics** functions can be used to solve various mechanics-related problems, such as finding the time it takes to travel a distance, the force needed for acceleration, and the work done by a force over a given distance with an angle.
+   **Kinematics**
+      - 2.1 Uniform Motion:
+         - Displacement, Time, and Speed: Functions for calculating the displacement (s), time (t), and speed (v) in cases of uniform (constant) motion. These are based on the simple equation s=v⋅ts=v⋅t, where vv is velocity, and tt is time. The time and displacement can also be computed from the other two known variables.
+         
+         - Key Formula:
+          $$s = v * t$$
+
+      - 2.2 Uniformly Accelerated Motion:
+         - Velocity, Displacement, Initial Velocity, and Acceleration: Functions for solving problems where motion is uniformly accelerated, using the well-known kinematic equations:
+         
+         - Key Formula:
+          $$v=v_0​+a*t$$
+          $$s = v_0 * t + \frac12 * a * t^2$$
+          $$v^2 = v_0^2$$
+         - These formulas allow you to compute the final velocity $v$, displacement $s$, or acceleration aa from the known quantities like initial velocity $v_0$​, time $t$, and acceleration.
+
+      - 2.3 Solving Equations Relating Velocity, Acceleration, and Displacement:
+         - The module provides various equations that link velocity, initial velocity, acceleration, and displacement. For example:
+
+         - Equation 1: $v = \sqrt{v_0^2 - 2 * a * s}$ (used for finding final velocity given initial velocity, acceleration, and displacement).
+
+         - Equation 2: $s = \frac{v^2 - v_0^2}{2 \cdot a}$ (used for finding displacement with known velocities and acceleration).
+      
+   **Dynamics**
+      - 2.4 Newton's Second Law:
+         - Force, Mass, and Acceleration: The module allows the application of Newton's Second Law of Motion $(F=m⋅a)$ to calculate force $(F)$, mass $(m)$, or acceleration $(a)$ when two of the quantities are known. This enables solving problems involving the forces acting on objects.
+   
+         - Key Formula:
+          $$F = m * a$$
+
+         - The module also includes separate functions for calculating mass from force and acceleration and acceleration from force and mass.
+
+      - 2.5 Mass and Acceleration Calculations:
+         - With this feature, you can compute the mass of an object when the force and acceleration are known, or calculate the acceleration if you know the force and mass. These functions can be used for solving dynamic motion problems where external forces are involved.
+   
+   - **Motion and Velocity Relationships**
+      - 2.6 Relationship Between Velocity, Initial Velocity, Acceleration, and Displacement:
+         - The module derives relationships between key quantities such as velocity $(v)$, initial velocity $(v_0​)$, acceleration $(a)$, and displacement $(s)$. These relationships are essential for solving a variety of kinematic and dynamic problems.
+   
+         - Examples include:
+            - $v = \sqrt{v_0^2 - 2 \cdot a \cdot s}$ (to find velocity in cases where you have acceleration and displacement).
+            - $v_0 = \sqrt{v^2 - 2 \cdot a \cdot s}$ (to find initial velocity).
+            - $s = \frac{v^2 - v_0^2}{2 \cdot a}$ (to find displacement with known initial and final velocities).
+   
+      - 2.7 Advanced Motion Equations:
+         - Terminal Velocity: The module can calculate terminal velocity in situations where an object is subject to forces like drag, and its acceleration decreases to zero due to opposing forces. The formulas for terminal velocity $v_{\text{terminal}} = \sqrt{2 \cdot m \cdot g / c}$ are implemented for use in such calculations.
+
+3. **User Interface (Menu)**: The menu structure provides a range of options to calculate various physical quantities. Each menu option corresponds to a different formula or method for calculating a specific aspect of mechanics, from basic kinematic equations to more complex force, acceleration, and work-related problems.
+
+4. **Error Handling**: Improved error handling has been added throughout the functions to ensure that invalid inputs or calculations that result in "NaN" or "infinity" are flagged. This ensures more robust and user-friendly interactions, especially when working with real-world values.
 
 ```
 

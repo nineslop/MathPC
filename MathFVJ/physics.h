@@ -9,25 +9,27 @@
 #include <stdexcept>
 
 namespace physics {
-	//MECHANICS Speed
-	double calculate_path(double v, double t);
-	double calculate_time(double s, double v);
-	double calcilate_speed(double s, double t);
+	//Kinematics Formulas of equal-velocity motion
+	double findingTheTravelled_calculate_path(double v, double t);
+	double findingTheTravelled_calculate_time(double s, double v);
+	double findingTheTravelled_calculate_speed(double s, double t);
 
-	//MECHANICS Acceleration
-	double calculate_acceleration(double del_u, double del_t);
-	double calculate_del_u(double a, double del_t);
-	double calculate_del_t(double del_u, double a);
+	// The formula for the path in equidirectional motion
+	double terminal_velocity(double a, double t);
+	double pathOfEquidirectionalMotion(double v_zero, double t, double a);
+	double v_zeroOfEquidirectionalMotion(double S, double a, double t);
+	double accelerationOfEquidirectionalMotion(double S, double v_zero, double t);
 
-	// Force (Newton's second law)
-	double calculate_F(double m, double a);
-	double calculate_m(double F, double a);
-	double calculate_a(double F, double m);
+	// Equation of the relationship between velocity, acceleration and path
+	double equationOfTheRelationshipBetweenVelocity(double v_zero, double a, double S);
+	double equationOfTheRelationshipBetweenV_zero(double v, double a, double S);
+	double equationOfTheRelationshipBetweenAcceleration(double v, double v_zero, double S);
+	double equationOfTheRelationshipBetweenPath(double v, double v_zero, double a);
 
-	// A
-	double calculate_work(double F, double s, double alpha_deg);
-	double calculate_force(double A, double s, double alpha_deg);
-	double calculate_distance(double A, double F, double alpha_deg);
+	// Dynamics Newton's Second Law
+	double dynamicsNewtonsSecondLaw(double m, double a);
+	double dynamicsNewtonsSecondLawMass(double F, double a);
+	double dynamicsNewtonsSecondLawStrong(double F, double m);
 }
 
 #endif
