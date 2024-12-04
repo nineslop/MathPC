@@ -223,15 +223,19 @@ This project is open-source and available under the MIT License.
          - Displacement, Time, and Speed: Functions for calculating the displacement (s), time (t), and speed (v) in cases of uniform (constant) motion. These are based on the simple equation s=v⋅ts=v⋅t, where vv is velocity, and tt is time. The time and displacement can also be computed from the other two known variables.
          
          - Key Formula:
-          $$s = v * t$$
+         
+            $s = v * t$
 
       - 2.2 Uniformly Accelerated Motion:
          - Velocity, Displacement, Initial Velocity, and Acceleration: Functions for solving problems where motion is uniformly accelerated, using the well-known kinematic equations:
          
          - Key Formula:
-          $$v=v_0​+a*t$$
-          $$s = v_0 * t + \frac12 * a * t^2$$
-          $$v^2 = v_0^2$$
+          
+            $v=v_0​+a*t$
+
+            $s = v_0 * t + \frac12 * a * t^2$
+
+            $v^2 = v_0^2$
          - These formulas allow you to compute the final velocity $v$, displacement $s$, or acceleration aa from the known quantities like initial velocity $v_0$​, time $t$, and acceleration.
 
       - 2.3 Solving Equations Relating Velocity, Acceleration, and Displacement:
@@ -246,7 +250,8 @@ This project is open-source and available under the MIT License.
          - Force, Mass, and Acceleration: The module allows the application of Newton's Second Law of Motion $(F=m⋅a)$ to calculate force $(F)$, mass $(m)$, or acceleration $(a)$ when two of the quantities are known. This enables solving problems involving the forces acting on objects.
    
          - Key Formula:
-          $$F = m * a$$
+         
+            $F = m * a$
 
          - The module also includes separate functions for calculating mass from force and acceleration and acceleration from force and mass.
 
