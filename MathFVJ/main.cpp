@@ -687,6 +687,23 @@ void physicsMenu() {
         std::cout << "12.Dynamics Newton's Second Law (F = m * a)\n";
         std::cout << "13.Dynamics Newton's Second Law (m = F / a)\n";
         std::cout << "14.Dynamics Newton's Second Law (a = F / m)\n";
+        std::cout << "15.Friction force (F = u * N)\n";
+        std::cout << "16.Friction force coefficient of friction (u = F / N)\n";
+        std::cout << "17.Friction force normal force (N = F / u)\n";
+        std::cout << "18.Work of force (A = F * S * cos a)\n";
+        std::cout << "19.Work of force power (F = A / S * cos a)\n";
+        std::cout << "20.Work of force path (S = A / F * cos a)\n";
+        std::cout << "21.Work of force cos a (cos a = A / F * S)\n";
+        std::cout << "22.Power (P = A / t)\n";
+        std::cout << "23.Power work (A = P * t)\n";
+        std::cout << "24.Power time (t = A / P)\n";
+        std::cout << "25.Electrodynamics current strength (I = U / R)\n";
+        std::cout << "26.Electrodynamics tension (U = I * R)\n";
+        std::cout << "27.Electrodynamics resistance (R = U / I)\n";
+        std::cout << "28.Amount of heat when heating or cooling (Q = c * m * del_T)\n";
+        std::cout << "29.Thermodynamics specific heat (c = Q / m * del_T)\n";
+        std::cout << "30.Thermodynamics mass (m = Q / c * del_T)\n";
+        std::cout << "31.Thermodynamics delta T (del_T = Q / c * m)\n";
         std::cout << "Your choice: ";
         std::cin >> choice;
 
@@ -987,6 +1004,393 @@ void physicsMenu() {
 
                 utils::output("Calculated m: ", a);
 
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+               // Friction force
+        case 15: {
+            double u, N;
+            utils::input("Write the value of u: ", u);
+            utils::input("Write the value of N: ", N);
+            try
+            {
+                double F = physics::frictionforce(u, N);
+
+                if (std::isnan(F) || std::isinf(F)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated F: ", F);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 16: {
+            double F, N;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of N: ", N);
+            try
+            {
+                double u = physics::frictionforceCoefficientOfFriction(F, N);
+
+                if (std::isnan(u) || std::isinf(u)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated u: ", u);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 17: {
+            double F, u;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of u: ", u);
+            try
+            {
+                double N = physics::frictionforceNormalForce(F, u);
+
+                if (std::isnan(N) || std::isinf(N)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated N: ", N);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+               // Work of force
+        case 18: {
+            double F, S, cos_a;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of S: ", S);
+            utils::input("Write the value of cos a: ", cos_a);
+            try
+            {
+                double A = physics::workOfForce(F, S, cos_a);
+
+                if (std::isnan(A) || std::isinf(A)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated A: ", A);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 19: {
+            double A, S, cos_a;
+            utils::input("Write the value of F: ", A);
+            utils::input("Write the value of S: ", S);
+            utils::input("Write the value of cos a: ", cos_a);
+            try
+            {
+                double F = physics::workOfForcePower(A, S, cos_a);
+
+                if (std::isnan(F) || std::isinf(F)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated F: ", F);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 20: {
+            double A, F, cos_a;
+            utils::input("Write the value of F: ", A);
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of cos a: ", cos_a);
+            try
+            {
+                double S = physics::workOfForcePower(A, F, cos_a);
+
+                if (std::isnan(S) || std::isinf(S)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated S: ", S);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 21: {
+            double A, F, S;
+            utils::input("Write the value of A: ", A);
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of S: ", S);
+            try
+            {
+                double cos_a = physics::workOfForceCos_a(A, F, S);
+
+                if (std::isnan(cos_a) || std::isinf(cos_a)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated cos_a: ", cos_a);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+               // Power
+        case 22: {
+            double A, t;
+            utils::input("Write the value of A: ", A);
+            utils::input("Write the value of t: ", t);
+            try
+            {
+                double P = physics::power(A, t);
+
+                if (std::isnan(P) || std::isinf(P)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated P: ", P);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 23: {
+            double P, t;
+            utils::input("Write the value of P: ", P);
+            utils::input("Write the value of t: ", t);
+            try
+            {
+                double A = physics::powerWork(P, t);
+
+                if (std::isnan(A) || std::isinf(A)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated A: ", A);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 24: {
+            double A, P;
+            utils::input("Write the value of A: ", A);
+            utils::input("Write the value of P: ", P);
+            try
+            {
+                double t = physics::powerTime(A, P);
+
+                if (std::isnan(t) || std::isinf(t)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated t: ", t);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+               // Electrodynamics
+        case 25: {
+            double U, R;
+            utils::input("Write the value of U: ", U);
+            utils::input("Write the value of R: ", R);
+            try
+            {
+                double I = physics::electrodynamicsCurrentStrength(U, R);
+
+                if (std::isnan(I) || std::isinf(I)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated I: ", I);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 26: {
+            double I, R;
+            utils::input("Write the value of I: ", I);
+            utils::input("Write the value of R: ", R);
+            try
+            {
+                double U = physics::electrodynamicsTension(I, R);
+
+                if (std::isnan(U) || std::isinf(U)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated U: ", U);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 27: {
+            double U, I;
+            utils::input("Write the value of U: ", U);
+            utils::input("Write the value of I: ", I);
+            try
+            {
+                double R = physics::electrodynamicsResistance(U, I);
+
+                if (std::isnan(R) || std::isinf(R)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated R: ", R);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+               // Thermodynamics
+        case 28: {
+            double c, m, del_T;
+            utils::input("Write the value of c: ", c);
+            utils::input("Write the value of m: ", m);
+            utils::input("Write the value of del_T: ", del_T);
+            try
+            {
+                double Q = physics::thermodynamicsHeat(c, m, del_T);
+
+                if (std::isnan(Q) || std::isinf(Q)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated Q: ", Q);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 29: {
+            double Q, m, del_T;
+            utils::input("Write the value of Q: ", Q);
+            utils::input("Write the value of m: ", m);
+            utils::input("Write the value of del_T: ", del_T);
+            try
+            {
+                double c = physics::thermodynamicsSpecificHeat(Q, m, del_T);
+
+                if (std::isnan(c) || std::isinf(c)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated c: ", c);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 30: {
+            double Q, c, del_T;
+            utils::input("Write the value of Q: ", Q);
+            utils::input("Write the value of c: ", c);
+            utils::input("Write the value of del_T: ", del_T);
+            try
+            {
+                double m = physics::thermodynamicsMass(Q, c, del_T);
+
+                if (std::isnan(m) || std::isinf(m)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated m: ", m);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+            break;
+        }
+        case 31: {
+            double Q, c, m;
+            utils::input("Write the value of Q: ", Q);
+            utils::input("Write the value of c: ", c);
+            utils::input("Write the value of m: ", m);
+            try
+            {
+                double del_T = physics::thermodynamicsDel_T(Q, c, m);
+
+                if (std::isnan(del_T) || std::isinf(del_T)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated del_T: ", del_T);
             }
             catch (const std::invalid_argument& e) {
                 std::cout << "Error: " << e.what() << std::endl;

@@ -30,6 +30,33 @@ namespace physics {
 	double dynamicsNewtonsSecondLaw(double m, double a);
 	double dynamicsNewtonsSecondLawMass(double F, double a);
 	double dynamicsNewtonsSecondLawStrong(double F, double m);
+
+	// Friction force
+	double frictionforce(double u, double N);
+	double frictionforceCoefficientOfFriction(double F, double N);
+	double frictionforceNormalForce(double F, double u);
+
+	// Work of force
+	double workOfForce(double F, double S, double cos_a);
+	double workOfForcePower(double A, double S, double cos_a);
+	double workOfForcePath(double A, double F, double cos_a);
+	double workOfForceCos_a(double A, double F, double S);
+
+	// Power
+	double power(double A, double t);
+	double powerWork(double P, double t);
+	double powerTime(double A, double P);
+
+	// Electrodynamics
+	double electrodynamicsCurrentStrength(double U, double R);
+	double electrodynamicsTension(double I, double R);
+	double electrodynamicsResistance(double U, double I);
+
+	// Thermodynamics
+	double thermodynamicsHeat(double c, double m, double del_T);
+	double thermodynamicsSpecificHeat(double Q, double m, double del_T);
+	double thermodynamicsMass(double Q, double c, double del_T);
+	double thermodynamicsDel_T(double Q, double c, double m);
 }
 
 #endif

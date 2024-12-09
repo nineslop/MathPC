@@ -35,6 +35,26 @@ The program includes the following modules:
    - **Motion and Velocity Relationships**
       - Derive relationships between velocity, initial velocity, acceleration, and displacement.
       - Compute values using advanced motion equations, including terminal velocity.
+   - **Friction Force**
+      - Calculate the force of friction based on the coefficient of friction and the normal force.
+      - Determine the coefficient of friction or the normal force when the other values are known.
+      - Useful for solving problems involving objects in motion or at rest on surfaces with varying friction.
+   - **Work of Force**
+      - Calculate the work done by a force based on the force magnitude, displacement, and the angle between them.
+      - Determine unknown variables such as force, displacement, or the angle based on known work values.
+      - Ideal for analyzing energy transfer in mechanical systems.
+   - **Power**
+      - Calculate the power output of a system based on work done and time taken.
+      - Determine work done or time elapsed when the power is known.
+      - Supports solving problems in mechanics and electrical circuits.
+   - **Electrodynamics**
+      - Calculate current, voltage, or resistance in an electrical circuit using Ohm's Law.
+      - Analyze relationships between these quantities for various circuit configurations.
+      - A foundational tool for solving electrodynamics problems.
+   - **Thermodynamics**
+      - Calculate the heat energy required or released based on specific heat capacity, mass, and temperature change.
+      - Determine unknown properties such as specific heat capacity, mass, or temperature change in thermal systems.
+      - Essential for solving problems involving heat transfer and thermal energy storage.
    - **Scalable Physics Constants**
       - Incorporates predefined constants for accurate physical computations.
 
@@ -214,65 +234,65 @@ If you'd like to contribute to the project, feel free to fork the repository, ma
 This project is open-source and available under the MIT License.
 
 ### Key Updates:
-1. **Physics Constants**: The program now includes important physical constants, such as the speed of light, gravitational constant, and Planck's constant, which are stored in the physics_constants.h file. These constants are useful for scientific and advanced calculations involving fundamental physical properties.
+1. **Physics Module**
 
-2. **Physics Module**: Physics has been rewritten, the formulas changed and made more understandable
+      - New functions and enhanced error handling have been added to improve accuracy and robustness for various physical calculations.
    
-   **Kinematics**
-      - 2.1 Uniform Motion:
-         - Displacement, Time, and Speed: Functions for calculating the displacement (s), time (t), and speed (v) in cases of uniform (constant) motion. These are based on the simple equation s=v⋅ts=v⋅t, where vv is velocity, and tt is time. The time and displacement can also be computed from the other two known variables.
+   **Friction Force**
+      - Functions for calculating the force of friction, the coefficient of friction, and the normal force have been implemented.
          
-         - Key Formula:
-         
-            $s = v * t$
+      - Enhanced error handling ensures inputs like negative coefficients or zero normal force are flagged as invalid.
 
-      - 2.2 Uniformly Accelerated Motion:
-         - Velocity, Displacement, Initial Velocity, and Acceleration: Functions for solving problems where motion is uniformly accelerated, using the well-known kinematic equations:
-         
-         - Key Formula:
-          
-            $v=v_0​ + a*t$
+   **Work of Force**
+      - Functions to compute work done by a force, as well as solve for unknowns like force, displacement, or the angle between force and motion.
+   
+      - Invalid scenarios, such as zero displacement or cosine of the angle being zero, are now handled with clear exceptions.
 
-            $s = v_0 * t + \frac12 * a * t^2$
+   **Power**
+      - New functions to calculate power, work, and time in systems involving energy transfer.
+   
+      - The module checks for logical constraints, such as non-negative time and work values.
 
-            $v^2 = v_0^2$
-         - These formulas allow you to compute the final velocity $v$, displacement $s$, or acceleration aa from the known quantities like initial velocity $v_0$​, time $t$, and acceleration.
+   **Electrodynamics**
+      - Functions for computing current strength, voltage, and resistance using Ohm's Law.
 
-      - 2.3 Solving Equations Relating Velocity, Acceleration, and Displacement:
-         - The module provides various equations that link velocity, initial velocity, acceleration, and displacement. For example:
+      - Robust validation prevents division by zero and ensures realistic values for current and resistance.
 
-         - Equation 1: $v = \sqrt{v_0^2 - 2 * a * s}$ (used for finding final velocity given initial velocity, acceleration, and displacement).
+   **Thermodynamics**
+      - Added functions to calculate heat, specific heat capacity, mass, and temperature change in thermal systems.
 
-         - Equation 2: $s = \frac{v^2 - v_0^2}{2 \cdot a}$ (used for finding displacement with known velocities and acceleration).
+      - Error handling ensures that inputs like mass, specific heat capacity, and temperature differences meet physical constraints.
       
-   **Dynamics**
-      - 2.4 Newton's Second Law:
-         - Force, Mass, and Acceleration: The module allows the application of Newton's Second Law of Motion $(F=m⋅a)$ to calculate force $(F)$, mass $(m)$, or acceleration $(a)$ when two of the quantities are known. This enables solving problems involving the forces acting on objects.
-   
-         - Key Formula:
-         
-            $F = m * a$
+2. **User Interface (Menu)**
 
-         - The module also includes separate functions for calculating mass from force and acceleration and acceleration from force and mass.
+      The menu structure now offers an expanded range of options for calculating various physical quantities across multiple physics domains. Each menu option corresponds to specific formulas or methods, covering topics such as friction, work, power, electrodynamics, and thermodynamics.
 
-      - 2.5 Mass and Acceleration Calculations:
-         - With this feature, you can compute the mass of an object when the force and acceleration are known, or calculate the acceleration if you know the force and mass. These functions can be used for solving dynamic motion problems where external forces are involved.
-   
-   - **Motion and Velocity Relationships**
-      - 2.6 Relationship Between Velocity, Initial Velocity, Acceleration, and Displacement:
-         - The module derives relationships between key quantities such as velocity $(v)$, initial velocity $(v_0​)$, acceleration $(a)$, and displacement $(s)$. These relationships are essential for solving a variety of kinematic and dynamic problems.
-   
-         - Examples include:
-            - $v = \sqrt{v_0^2 - 2 \cdot a \cdot s}$ (to find velocity in cases where you have acceleration and displacement).
-            - $v_0 = \sqrt{v^2 - 2 \cdot a \cdot s}$ (to find initial velocity).
-            - $s = \frac{v^2 - v_0^2}{2 \cdot a}$ (to find displacement with known initial and final velocities).
-   
-      - 2.7 Advanced Motion Equations:
-         - Terminal Velocity: The module can calculate terminal velocity in situations where an object is subject to forces like drag, and its acceleration decreases to zero due to opposing forces. The formulas for terminal velocity $v_{\text{terminal}} = \sqrt{2 \cdot m \cdot g / c}$ are implemented for use in such calculations.
+      The menu is structured to guide the user through intuitive steps for solving problems, from basic kinematic equations to advanced calculations for forces, energy, and thermal systems. Enhanced error handling ensures a user-friendly experience, providing clear feedback for invalid inputs or edge cases.
 
-3. **User Interface (Menu)**: The menu structure provides a range of options to calculate various physical quantities. Each menu option corresponds to a different formula or method for calculating a specific aspect of mechanics, from basic kinematic equations to more complex force, acceleration, and work-related problems.
+      Newly added options allow users to:
+      - Calculate friction forces and analyze the effects of different coefficients and normal forces.
 
-4. **Error Handling**: Improved error handling has been added throughout the functions to ensure that invalid inputs or calculations that result in "NaN" or "infinity" are flagged. This ensures more robust and user-friendly interactions, especially when working with real-world values.
+      - Compute work done, power output, and related variables in mechanical systems.
+
+      - Solve electrodynamic problems involving current, voltage, and resistance.
+
+      - Perform thermal calculations, such as determining heat energy, mass, or temperature changes.
+
+      This expanded functionality makes the menu a versatile tool for tackling a wide variety of physical problems.
+
+3. **Error Handling**
+
+      Error handling has been significantly improved across all new and existing functions to ensure robust and user-friendly interactions. Key enhancements include:
+
+      - Input Validation: Functions now rigorously check for invalid inputs, such as negative or zero values where they are not physically meaningful (e.g., negative mass, zero time, or invalid coefficients of friction).
+
+      - Exception Handling: When invalid inputs are detected, clear and specific exceptions (std::invalid_argument) are thrown, providing detailed feedback to the user about the nature of the issue.
+
+      - Boundary Conditions: Calculations that could result in "NaN" (Not a Number) or "infinity" are intercepted early, with appropriate error messages to guide the user toward correcting the inputs.
+
+      - Consistency Checks: Ensures that logical constraints, such as positive work and non-zero temperature changes, are always met.
+
+      These enhancements make the program more reliable and ensure that real-world values are handled with precision, minimizing the likelihood of runtime errors and improving the overall user experience.
 
 ```
 

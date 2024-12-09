@@ -102,5 +102,129 @@ namespace physics {
 	}
 
 	// Gravity
+
 	// Friction force
+	double frictionforce(double u, double N) {
+		if (u <= 0 || N <= 0) {
+			throw std::invalid_argument("The friction coefficient or normal force cannot be less than zero.");
+		}
+		return u * N;
+	}
+
+	double frictionforceCoefficientOfFriction(double F, double N) {
+		if (N <= 0) {
+			throw std::invalid_argument("The normal force cannot be less than zero.");
+		}
+		return F / N;
+	}
+
+	double frictionforceNormalForce(double F, double u) {
+		if (u <= 0) {
+			throw std::invalid_argument("The friction coefficient cannot be less than zero.");
+		}
+		return F / u;
+	}
+	
+	// Work, energy, power
+	// Work of force
+	double workOfForce(double F, double S, double cos_a) {
+		if (cos_a == 0 || F <= 0 || S <= 0) {
+			throw std::invalid_argument("cos a is not zero, the force or path must be greater than 0");
+		}
+		return F * S * std::cos(cos_a);
+	}
+
+	double workOfForcePower(double A, double S, double cos_a) {
+		if (S <= 0 || cos_a == 0) {
+			throw std::invalid_argument("cos a is not zero, the path must be greater than 0");
+		}
+		return A / (S * std::cos(cos_a));
+	}
+
+	double workOfForcePath(double A, double F, double cos_a) {
+		if (F <= 0 || cos_a == 0) {
+			throw std::invalid_argument("cos a is not zero, the path must be greater than 0");
+		}
+		return A / (F * std::cos(cos_a));
+	}
+
+	double workOfForceCos_a(double A, double F, double S) {
+		if (F <= 0 || S <= 0) {
+			throw std::invalid_argument("The force or path must be greater than 0");
+		}
+		return A / (F * S);
+	}
+
+	// Power
+	double power(double A, double t) {
+		if (t <= 0 || A < 0) {
+			throw std::invalid_argument("Time cannot be less than zero and work cannot be less than zero");
+		}
+		return A / t;
+	}
+
+	double powerWork(double P, double t) {
+		if (t <= 0) {
+			throw std::invalid_argument("Time cannot be less than zero");
+		}
+		return P * t;
+	}
+
+	double powerTime(double A, double P) {
+		if (A < 0) {
+			throw std::invalid_argument("Work cannot be less than zero");
+		}
+		return A / P;
+	}
+
+	// Electrodynamics
+	double electrodynamicsCurrentStrength(double U, double R) {
+		if (U < 0 || R <= 0) {
+			throw std::invalid_argument("The voltage must be greater than zero and the resistance must be greater than zero");
+		}
+		return U / R;
+	}
+
+	double electrodynamicsTension(double I, double R) {
+		if (I < 0 || R <= 0) {
+			throw std::invalid_argument("The current must be greater than zero and the resistance must be greater than zero");
+		}
+		return I * R;
+	}
+
+	double electrodynamicsResistance(double U, double I) {
+		if (U < 0 || I < 0) {
+			throw std::invalid_argument("Current and voltage must be more than equal to zero");
+		}
+		return U / I;
+	}
+
+	// Thermodynamics
+	double thermodynamicsHeat(double c, double m, double del_T) {
+		if (m <= 0 || c <= 0 || del_T == 0) {
+			throw std::invalid_argument("The mass and specific heat capacity must be greater than zero and the change in temperature must not equal zero");
+		}
+		return c * m * del_T;
+	}
+
+	double thermodynamicsSpecificHeat(double Q, double m, double del_T) {
+		if (m <= 0 || del_T == 0) {
+			throw std::invalid_argument("The mass capacity must be greater than zero and the change in temperature must not equal zero");
+		}
+		return Q / (m * del_T);
+	}
+
+	double thermodynamicsMass(double Q, double c, double del_T) {
+		if (c <= 0 || del_T == 0) {
+			throw std::invalid_argument("The specific heat capacity must be greater than zero and the change in temperature must not equal zero");
+		}
+		return Q / (c * del_T);
+	}
+
+	double thermodynamicsDel_T(double Q, double c, double m) {
+		if (m <= 0 || c <= 0) {
+			throw std::invalid_argument("The mass and specific heat capacity must be greater than zero");
+		}
+		return Q / (c * m);
+	}
 }
