@@ -25,75 +25,20 @@ The program includes the following modules:
    - Convert numbers between different number bases (from base 2 to 16) to decimal (base 10).
 
 5. **Physics**:
-   - **Kinematics**
-      - Calculate displacement, time, and speed for uniform motion.
-      - Compute velocity, displacement, initial velocity, and acceleration for uniformly accelerated motion.
-      - Solve equations relating velocity, acceleration, and displacement.
-   - **Dynamics**
-      - Apply Newton's Second Law to calculate force, mass, and acceleration.
-      - Support calculations for mass and acceleration based on given forces.
-   - **Motion and Velocity Relationships**
-      - Derive relationships between velocity, initial velocity, acceleration, and displacement.
-      - Compute values using advanced motion equations, including terminal velocity.
-   - **Friction Force**
-      - Calculate the force of friction based on the coefficient of friction and the normal force.
-      - Determine the coefficient of friction or the normal force when the other values are known.
-      - Useful for solving problems involving objects in motion or at rest on surfaces with varying friction.
-   - **Work of Force**
-      - Calculate the work done by a force based on the force magnitude, displacement, and the angle between them.
-      - Determine unknown variables such as force, displacement, or the angle based on known work values.
-      - Ideal for analyzing energy transfer in mechanical systems.
-   - **Power**
-      - Calculate the power output of a system based on work done and time taken.
-      - Determine work done or time elapsed when the power is known.
-      - Supports solving problems in mechanics and electrical circuits.
-   - **Electrodynamics**
-      - Calculate current, voltage, or resistance in an electrical circuit using Ohm's Law.
-      - Analyze relationships between these quantities for various circuit configurations.
-      - A foundational tool for solving electrodynamics problems.
-   - **Thermodynamics**
-      - Calculate the heat energy required or released based on specific heat capacity, mass, and temperature change.
-      - Determine unknown properties such as specific heat capacity, mass, or temperature change in thermal systems.
-      - Essential for solving problems involving heat transfer and thermal energy storage.
-   - **Scalable Physics Constants**
-      - Incorporates predefined constants for accurate physical computations.
+   - **Kinematics**: Calculate displacement, time, and speed for uniform motion, and velocity, displacement, initial velocity, and acceleration for uniformly accelerated motion.
+   - **Dynamics**: Use Newton's Second Law to find force, mass, and acceleration in a system.
+   - **Motion and Velocity Relationships**: Derive and solve equations connecting velocity, acceleration, and displacement, including terminal velocity.
+   - **Friction Force**: Compute friction based on the coefficient of friction and normal force; solve for unknowns in friction-related problems.
+   - **Work of Force**: Calculate work done by a force, using magnitude, displacement, and the angle between them.
+   - **Power**: Calculate power based on work and time, or determine work or time given power.
+   - **Electrodynamics**: Solve for current, voltage, and resistance in circuits using Ohm's Law.
+   - **Thermodynamics**: Calculate heat energy changes based on specific heat capacity, mass, and temperature change.
+   - **Mechanical vibrations and waves**: Analyze mechanical vibrations and wave properties.
+   - **Wavelength formula**: Calculate the wavelength of a wave based on frequency and wave speed.
+   - **Lens formula (thin lens)**: Apply the thin lens formula to solve optical problems involving lenses.
 
 6. **Function Graphing**:
    - (This module has been intended but not yet implemented in the provided code, the implementation will be with the OpenGL library).
-
-## Geometry Functions
-
-### 2D Shapes
-- Square:
-  
-- Rectangle: 
-  
-- Triangle:
-  
-- Circle:
-  
-- Rhombus: 
-  
-- Parallelogram: 
-  
-- Trapezoid (Trapeze): 
-  
-- Polygon:
-  
-- Ellipse: 
-  
-- Circle Sector:
-
-### 3D Shapes
-- Cube:
-  
-- Rectangular Parallelepiped: 
-  
-- Cylinder: 
-  
-- Cone:
-  
-- Torus: 
 
 ## Physics constants
 
@@ -140,28 +85,6 @@ The program leverages a comprehensive set of predefined constants stored in phys
    - Planck Temperature: Maximum temperature in quantum theory.
 
 These constants are carefully validated and structured for use in a variety of physical, astrophysical, and quantum mechanics calculations. For a complete list, refer to the physics_constants.h file.
-
-
-## Libraries Used
-
-The program uses the following libraries:
-
-- `<iostream>`: For input and output operations.
-- `<limits>`: To define limits for numeric data types (e.g., `std::numeric_limits`).
-- `<windows.h>`: For clearing the console screen using `system("cls")` (Windows-specific).
-- `<locale.h>`: To support the Russian language in the console.
-- `<cmath>`: For mathematical functions such as trigonometric, exponential, and logarithmic calculations.
-- `<stdexcept>`: To handle standard exceptions (e.g., `std::invalid_argument`).
-- `<string>`: For string manipulation.
-- `<algorithm>`: For standard algorithms like sorting and searching.
-- **Custom Header Files**:
-  - `geometry.h`: Contains functions related to geometric calculations.
-  - `algebra.h`: Contains functions for solving algebraic problems.
-  - `calcul.h`: Contains arithmetic operations and other mathematical functions.
-  - `utils.h`: Contains utility functions for input, output, and other operations.
-  - `numbertable.h`: Functions for converting between number systems (binary, octal, hexadecimal, etc.).
-  - `physics.h`: Contains functions for physics-related calculations.
-  - `physics_constants.h`: Contains constants used in physics calculations.
 
 ## How to Use
 
@@ -236,63 +159,21 @@ This project is open-source and available under the MIT License.
 ### Key Updates:
 1. **Physics Module**
 
-      - New functions and enhanced error handling have been added to improve accuracy and robustness for various physical calculations.
-   
-   **Friction Force**
-      - Functions for calculating the force of friction, the coefficient of friction, and the normal force have been implemented.
+      - New features added.
+         - Mechanical vibrations and waves
+
+         - Wavelength formula's
          
-      - Enhanced error handling ensures inputs like negative coefficients or zero normal force are flagged as invalid.
-
-   **Work of Force**
-      - Functions to compute work done by a force, as well as solve for unknowns like force, displacement, or the angle between force and motion.
-   
-      - Invalid scenarios, such as zero displacement or cosine of the angle being zero, are now handled with clear exceptions.
-
-   **Power**
-      - New functions to calculate power, work, and time in systems involving energy transfer.
-   
-      - The module checks for logical constraints, such as non-negative time and work values.
-
-   **Electrodynamics**
-      - Functions for computing current strength, voltage, and resistance using Ohm's Law.
-
-      - Robust validation prevents division by zero and ensures realistic values for current and resistance.
-
-   **Thermodynamics**
-      - Added functions to calculate heat, specific heat capacity, mass, and temperature change in thermal systems.
-
-      - Error handling ensures that inputs like mass, specific heat capacity, and temperature differences meet physical constraints.
+         - Lens formula's
       
-2. **User Interface (Menu)**
+2. **Refactoring code**
 
-      The menu structure now offers an expanded range of options for calculating various physical quantities across multiple physics domains. Each menu option corresponds to specific formulas or methods, covering topics such as friction, work, power, electrodynamics, and thermodynamics.
+      - Menu optimization: replaced switch-case by using ```std::map``` with functions, making it easier to add new sections and improving code readability.
+      
+      - Simplified I/O: centralized input processing and improved menu navigation.
 
-      The menu is structured to guide the user through intuitive steps for solving problems, from basic kinematic equations to advanced calculations for forces, energy, and thermal systems. Enhanced error handling ensures a user-friendly experience, providing clear feedback for invalid inputs or edge cases.
-
-      Newly added options allow users to:
-      - Calculate friction forces and analyze the effects of different coefficients and normal forces.
-
-      - Compute work done, power output, and related variables in mechanical systems.
-
-      - Solve electrodynamic problems involving current, voltage, and resistance.
-
-      - Perform thermal calculations, such as determining heat energy, mass, or temperature changes.
-
-      This expanded functionality makes the menu a versatile tool for tackling a wide variety of physical problems.
-
-3. **Error Handling**
-
-      Error handling has been significantly improved across all new and existing functions to ensure robust and user-friendly interactions. Key enhancements include:
-
-      - Input Validation: Functions now rigorously check for invalid inputs, such as negative or zero values where they are not physically meaningful (e.g., negative mass, zero time, or invalid coefficients of friction).
-
-      - Exception Handling: When invalid inputs are detected, clear and specific exceptions (std::invalid_argument) are thrown, providing detailed feedback to the user about the nature of the issue.
-
-      - Boundary Conditions: Calculations that could result in "NaN" (Not a Number) or "infinity" are intercepted early, with appropriate error messages to guide the user toward correcting the inputs.
-
-      - Consistency Checks: Ensures that logical constraints, such as positive work and non-zero temperature changes, are always met.
-
-      These enhancements make the program more reliable and ensure that real-world values are handled with precision, minimizing the likelihood of runtime errors and improving the overall user experience.
+      - Increased flexibility and maintainability: the code became more modular and easier to extend by using function pointers in ```std::map```.
+    
 
 ```
 

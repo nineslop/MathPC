@@ -57,6 +57,20 @@ namespace physics {
 	double thermodynamicsSpecificHeat(double Q, double m, double del_T);
 	double thermodynamicsMass(double Q, double c, double del_T);
 	double thermodynamicsDel_T(double Q, double c, double m);
+
+	// Mechanical vibrations and waves
+	double formulaForThePeriodOfOscillationOfaPendulum(double l);
+	double formulaForThePeriodOfOscillationOfaPendulumLength(double T);
+
+	// Wavelength formula
+	double wavelengthFormula(double u, double f);
+	double wavelengthFormulaWaveSpeed(double L, double f);
+	double wavelengthFormulaWaveFrequency(double u, double L);
+
+	// Lens formula (thin lens)
+	double lensFormulaThinLens(double d, double f);
+	double lensFormulaObjectDistance(double F, double f);
+	double lensFormulaImageDistance(double F, double d);
 }
 
 #endif

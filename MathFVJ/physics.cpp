@@ -227,4 +227,63 @@ namespace physics {
 		}
 		return Q / (c * m);
 	}
+
+	// Mechanical vibrations and waves
+	double formulaForThePeriodOfOscillationOfaPendulum(double l) {
+		if (l <= 0) {
+			throw std::invalid_argument("The length of the pendulum must not be less than zero.");
+		}
+		return ((2 * M_PI) * (sqrt(l / Physics_constants::FREE_FALL_ACCELERATION_g_earth)));
+	}
+
+	double formulaForThePeriodOfOscillationOfaPendulumLength(double T) {
+		if (T <= 0) {
+			throw std::invalid_argument("The oscillation period of the pendulum must not be less than zero.");
+		}
+		return (pow(T, 2) * Physics_constants::FREE_FALL_ACCELERATION_g_earth) / (4 * pow(M_PI, 2));
+	}
+
+	// Wavelength formula
+	double wavelengthFormula(double u, double f) {
+		if (u <= 0 || f <= 0) {
+			throw std::invalid_argument("The wave speed must be greater than zero, the wave frequency must be greater than zero.");
+		}
+		return u / f;
+	}
+
+	double wavelengthFormulaWaveSpeed(double L, double f) {
+		if (f <= 0) {
+			throw std::invalid_argument("The wave frequency must be greater than zero.");
+		}
+		return L * f;
+	}
+
+	double wavelengthFormulaWaveFrequency(double u, double L) {
+		if (u <= 0) {
+			throw std::invalid_argument("The wave speed must be greater than zero.");
+		}
+		return u / L;
+	}
+
+	// Lens formula (thin lens)
+	double lensFormulaThinLens(double d, double f) {
+		if (d <= 0 || f <= 0) {
+			throw std::invalid_argument("Distance to object must be greater than zero, distance to image must be greater than zero.");
+		}
+		return (1 / ((1 / d) + (1 / f)));
+	}
+
+	double lensFormulaObjectDistance(double F, double f) {
+		if (F <= 0 || f <= 0) {
+			throw std::invalid_argument("Focal length should be greater than zero, image distance should be greater than zero.");
+		}
+		return (1 / ((1 / F) + (1 / f)));
+	}
+
+	double lensFormulaImageDistance(double F, double d) {
+		if (F <= 0 || d <= 0) {
+			throw std::invalid_argument("Focal length must be greater than zero, subject distance must be greater than zero.");
+		}
+		return (1 / ((1 / F) + (1 / d)));
+	}
 }
