@@ -36,6 +36,10 @@ The program includes the following modules:
    - **Mechanical vibrations and waves**: Analyze mechanical vibrations and wave properties.
    - **Wavelength formula**: Calculate the wavelength of a wave based on frequency and wave speed.
    - **Lens formula (thin lens)**: Apply the thin lens formula to solve optical problems involving lenses.
+   - **Electromagnetic Field**: Analyze and compute characteristics of electromagnetic fields.
+   - **Lorentz Force**: Solve problems involving the Lorentz force acting on charged particles in magnetic and electric fields.
+   - **Quantum Physics**: Calculate photon energy using Planck's constant and frequency.
+   - **The de Broglie Equation**: Apply the de Broglie wavelength formula to determine the wavelength of particles based on their momentum.
 
 6. **Function Graphing**:
    - (This module has been intended but not yet implemented in the provided code, the implementation will be with the OpenGL library).
@@ -160,20 +164,13 @@ This project is open-source and available under the MIT License.
 1. **Physics Module**
 
       - New features added.
-         - Mechanical vibrations and waves
+         - Electromagnetic Field
 
-         - Wavelength formula's
+         - Lorentz Force
          
-         - Lens formula's
-      
-2. **Refactoring code**
+         - Quantum Physics   
 
-      - Menu optimization: replaced switch-case by using ```std::map``` with functions, making it easier to add new sections and improving code readability.
-      
-      - Simplified I/O: centralized input processing and improved menu navigation.
-
-      - Increased flexibility and maintainability: the code became more modular and easier to extend by using function pointers in ```std::map```.
-    
+         - The de Broglie Equation
 
 ```
 

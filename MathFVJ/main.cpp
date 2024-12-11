@@ -1425,6 +1425,272 @@ void physicsMenu() {
                 std::cout << "Validation Error: " << e.what() << std::endl;
             }
         }},
+        {40, [](){
+            double del_F, del_t;
+            utils::input("Write the value of del_F: ", del_F);
+            utils::input("Write the value of del_t: ", del_t);
+            try
+            {
+                double E = physics::faradaysLaw(del_F, del_t);
+
+                if (std::isnan(E) || std::isinf(E)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated E: ", E);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {41, [](){
+            double E, del_t;
+            utils::input("Write the value of del_F: ", E);
+            utils::input("Write the value of del_t: ", del_t);
+            try
+            {
+                double del_F = physics::faradaysLawMagneticFluxVariation(E, del_t);
+
+                if (std::isnan(del_F) || std::isinf(del_F)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated del_F: ", del_F);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {42, [](){
+            double del_F, E;
+            utils::input("Write the value of del_F: ", del_F);
+            utils::input("Write the value of E: ", E);
+            try
+            {
+                double del_t = physics::faradaysLawChangeTime(del_F, E);
+
+                if (std::isnan(del_t) || std::isinf(del_t)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated del_t: ", del_t);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {43, [](){
+            double q, v, B, sin_a;
+            utils::input("Write the value of q: ", q);
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of B: ", B);
+            utils::input("Write the value of sin_a: ", sin_a);
+            try
+            {
+                double F = physics::lorenzsStrength(q, v, B, sin_a);
+
+                if (std::isnan(F) || std::isinf(F)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated F: ", F);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {44, [](){
+            double F, v, B, sin_a;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of B: ", B);
+            utils::input("Write the value of sin_a: ", sin_a);
+            try
+            {
+                double q = physics::lorenzsStrenghtCharge(F, v, B, sin_a);
+
+                if (std::isnan(q) || std::isinf(q)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated q: ", q);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {45, [](){
+            double F, q, B, sin_a;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of q: ", q);
+            utils::input("Write the value of B: ", B);
+            utils::input("Write the value of sin_a: ", sin_a);
+            try
+            {
+                double v = physics::lorenzsStrenghtChargeRate(F, q, B, sin_a);
+
+                if (std::isnan(v) || std::isinf(v)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated v: ", v);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {46, [](){
+            double F, q, v, sin_a;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of q: ", q);
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of sin_a: ", sin_a);
+            try
+            {
+                double B = physics::lorenzsStrenghtMagneticInduction(F, q, v, sin_a);
+
+                if (std::isnan(B) || std::isinf(B)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated B: ", B);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {47, [](){
+           double F, q, v, B;
+            utils::input("Write the value of F: ", F);
+            utils::input("Write the value of q: ", q);
+            utils::input("Write the value of v: ", v);
+            utils::input("Write the value of B: ", B);
+            try
+            {
+                double sin_a = physics::lorenzsStrenghtSin_a(F, q, v, B);
+
+                if (std::isnan(sin_a) || std::isinf(sin_a)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated sin_a: ", sin_a);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {48, [](){
+            double v;
+            utils::input("Write the value of v: ", v);
+            try
+            {
+                double E = physics::photonEnergy(v);
+
+                if (std::isnan(E) || std::isinf(E)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated E: ", E);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {49, [](){
+            double E;
+            utils::input("Write the value of E: ", E);
+            try
+            {
+                double v = physics::photonEnergyRadiationFrequency(E);
+
+                if (std::isnan(v) || std::isinf(v)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                utils::output("Calculated v: ", v);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {50, [](){
+            double p;
+            utils::input("Write the value of p: ", p);
+            try
+            {
+                double L = physics::theDeBroglieEquation(p);
+
+                if (std::isnan(L) || std::isinf(L)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                if (L < 0) {
+                    throw std::invalid_argument("The de Broglie wavelength must be greater than zero.");
+                }
+
+                utils::output("Calculated L: ", L);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
+        {51, [](){
+            double L;
+            utils::input("Write the value of L: ", L);
+            try
+            {
+                double p = physics::theDeBroglieEquationParticleMomentum(L);
+
+                if (std::isnan(p) || std::isinf(p)) {
+                    throw std::runtime_error("Calculated speed is not a valid number.");
+                }
+
+                if (p < 0) {
+                    throw std::invalid_argument("The de Broglie wavelength must be greater than zero.");
+                }
+
+                utils::output("Calculated p: ", p);
+            }
+            catch (const std::invalid_argument& e) {
+                std::cout << "Error: " << e.what() << std::endl;
+            }
+            catch (const std::runtime_error& e) {
+                std::cout << "Validation Error: " << e.what() << std::endl;
+            }
+        }},
     };
 
     while (true) {
@@ -1469,6 +1735,18 @@ void physicsMenu() {
         std::cout << "37.Lens formula (thin lens) (F = 1 / (1 / d) + (1 / f))\n";
         std::cout << "38.Lens formula the distance to the object (d = 1 / (1 / F) + (1 / f))\n";
         std::cout << "39.Lens formula the image distance (f = 1 / (1 / F) + (1 / d))\n";
+        std::cout << "40.Electromagnetic field faraday's law  (E = -(del_F / del_t))\n";
+        std::cout << "41.Electromagnetic field magnetic flux variation  (del_F = - (E * del_t)\n";
+        std::cout << "42.Electromagnetic field change time (del_t = -(del_F / E))\n";
+        std::cout << "43.Lorenz's strength (F = q * v * B * sin_a)\n";
+        std::cout << "44.Lorenz's strength charge (q = F / v * B * sin_a)\n";
+        std::cout << "45.Lorenz's strength charge rate (v = F / q * B * sin_a)\n";
+        std::cout << "46.Lorenz's strength magnetic induction (B = F / q * v * sin_a)\n";
+        std::cout << "47.Lorenz's strengths sin_a (sin_a = F / q * v * B)\n";
+        std::cout << "48.Quantum physics photon energy (E = h(PLANCK_CONSTANT) * v)\n";
+        std::cout << "49.Quantum physics photon energy (v = E / h(PLANCK_CONSTANT))\n";
+        std::cout << "50.Quantum physics the de Broglie equation (L = h(PLANCK_CONSTANT) / p)\n";
+        std::cout << "51.Quantum physics the de Broglie equation particle momentum (p = h(PLANCK_CONSTANT) / L)\n";
         std::cout << "Your choice: ";
 
         int choice;

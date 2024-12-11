@@ -71,6 +71,26 @@ namespace physics {
 	double lensFormulaThinLens(double d, double f);
 	double lensFormulaObjectDistance(double F, double f);
 	double lensFormulaImageDistance(double F, double d);
+
+	// Electromagnetic field
+	double faradaysLaw(double del_F, double del_t);
+	double faradaysLawMagneticFluxVariation(double E, double del_t);
+	double faradaysLawChangeTime(double del_F, double E);
+
+	// Lorenz's strength
+	double lorenzsStrength(double q, double v, double B, double sin_a);
+	double lorenzsStrenghtCharge(double F, double v, double B, double sin_a);
+	double lorenzsStrenghtChargeRate(double F, double q, double B, double sin_a);
+	double lorenzsStrenghtMagneticInduction(double F, double q, double v, double sin_a);
+	double lorenzsStrenghtSin_a(double F, double q, double v, double B);
+
+	// Quantum physics photon energy
+	double photonEnergy(double v);
+	double photonEnergyRadiationFrequency(double E);
+
+	// The de Broglie equation
+	double theDeBroglieEquation(double p);
+	double theDeBroglieEquationParticleMomentum(double L);
 }
 
 #endif

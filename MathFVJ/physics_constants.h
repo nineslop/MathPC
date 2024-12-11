@@ -26,7 +26,7 @@ namespace Physics_constants {
 
     // Gravitational constant (value with error), m³/(kg-s²)
     constexpr double GRAVITATIONAL_CONSTANT = 6.67430e-11; // Basic value
-    constexpr double GRAVITATIONAL_CONSTANT_ERROR = 0.00015e-11; // Погрешность
+    constexpr double GRAVITATIONAL_CONSTANT_ERROR = 0.00015e-11; // Uncertainty
 
     // Planck's constant (exact), J-s
     constexpr double PLANCK_CONSTANT = 6.62607015e-34;

@@ -286,4 +286,89 @@ namespace physics {
 		}
 		return (1 / ((1 / F) + (1 / d)));
 	}
+
+	// Electromagnetic field
+	double faradaysLaw(double del_F, double del_t) {
+		if (del_t <= 0 || del_F == 0) {
+			throw std::invalid_argument("The change time must be greater than zero and the change in magnetic flux must not equal zero.");
+		}
+		return (-(del_F / del_t));
+	}
+
+	double faradaysLawMagneticFluxVariation(double E, double del_t) {
+		if (del_t <= 0) {
+			throw std::invalid_argument("The change time must be greater than zero.");
+		}
+		return (-(E * del_t));
+	}
+
+	double faradaysLawChangeTime(double del_F, double E) {
+		if (del_F == 0) {
+			throw std::invalid_argument("The change in magnetic flux must not equal zero.");
+		}
+		return (-(del_F / E));
+	}
+
+	// Lorenz's strength
+	double lorenzsStrength(double q, double v, double B, double sin_a) {
+		if (q == 0 || v < 0 || B < 0 || sin_a == 0) {
+			throw std::invalid_argument("The charge and the angle between v and B must not be zero, the charge velocity and magnetic induction must be greater than zero.");
+		}
+		return (q * v * B * sin(sin_a));
+	}
+
+	double lorenzsStrenghtCharge(double F, double v, double B, double sin_a) {
+		if (v < 0 || B < 0 || sin_a == 0) {
+			throw std::invalid_argument("The angle between v and B must not be zero, the charge velocity and magnetic induction must be greater than zero.");
+		}
+		return ((F) / (v * B * sin(sin_a)));
+	}
+
+	double lorenzsStrenghtChargeRate(double F, double q, double B, double sin_a) {
+		if (q == 0 || B < 0 || sin_a == 0) {
+			throw std::invalid_argument("The charge and the angle between v and B must not be zero, the magnetic induction must be greater than zero.");
+		}
+		return ((F) / (q * B * sin(sin_a)));
+	}
+
+	double lorenzsStrenghtMagneticInduction(double F, double q, double v, double sin_a) {
+		if (q == 0 || v < 0 || sin_a == 0) {
+			throw std::invalid_argument("The charge and the angle between v and Bmust not be zero, the charge velocity must be greater than zero.");
+		}
+		return ((F) / (q * v * sin(sin_a)));
+	}
+
+	double lorenzsStrenghtSin_a(double F, double q, double v, double B) {
+		if (q == 0 || v < 0 || B < 0) {
+			throw std::invalid_argument("The charge not be zero, the charge velocity and magnetic induction must be greater than zero.");
+		}
+		return ((F) / (q * v * B));
+	}
+
+	// Quantum physics photon energy
+	double photonEnergy(double v) {
+		if (v < 0) {
+			throw std::invalid_argument("The emission frequency must be greater than zero.");
+		}
+		return (Physics_constants::PLANCK_CONSTANT * v);
+	}
+
+	double photonEnergyRadiationFrequency(double E) {
+		return (E / Physics_constants::PLANCK_CONSTANT);
+	}
+
+	// The de Broglie equation
+	double theDeBroglieEquation(double p) {
+		if (p < 0) {
+			throw std::invalid_argument("The momentum of the particles must be greater than zero.");
+		}
+		return (Physics_constants::PLANCK_CONSTANT / p);
+	}
+
+	double theDeBroglieEquationParticleMomentum(double L) {
+		if (L < 0) {
+			throw std::invalid_argument("The de Broglie wavelength must be greater than zero.");
+		}
+		return (Physics_constants::PLANCK_CONSTANT / L);
+	}
 }
